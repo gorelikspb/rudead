@@ -1053,20 +1053,33 @@ function sendContactMessage() {
 // Log email to admin for tracking
 async function logEmailToAdmin(emailData) {
     try {
-        const workerUrl = 'https://rudead.gorelikgo.workers.dev';
-        await fetch(workerUrl, {
+        const workerUrl = 'https://rudead.gorelikgo.workers.dev/';
+        const payload = {
+            type: 'log_email',
+            email_type: emailData.type, // 'contact', 'user', 'contact_dev'
+            email: emailData.email,
+            name: emailData.name || emailData.contact_name || 'Not provided',
+            phone: emailData.phone || emailData.contact_phone || 'Not provided',
+            timestamp: new Date().toISOString()
+        };
+        
+        // Add message if present (for contact_dev)
+        if (emailData.message) {
+            payload.message = emailData.message;
+        }
+        
+        const response = await fetch(workerUrl, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                type: 'log_email',
-                email_type: emailData.type, // 'contact' or 'test'
-                email: emailData.email,
-                name: emailData.name || emailData.contact_name || 'Not provided',
-                phone: emailData.phone || emailData.contact_phone || 'Not provided',
-                timestamp: new Date().toISOString()
-            })
+            body: JSON.stringify(payload)
         });
-        console.log('Email logged to admin:', emailData);
+        
+        const result = await response.json();
+        console.log('Email logged to admin:', emailData, 'Response:', result);
+        
+        if (!response.ok) {
+            console.error('Failed to log email:', result);
+        }
     } catch (error) {
         console.error('Failed to log email to admin:', error);
         // Don't show error to user, just log it
@@ -1096,7 +1109,7 @@ async function sendEmergencyNotification(contact) {
     }
     
     // Send email via Cloudflare Worker + Resend API
-    const workerUrl = 'https://rudead.gorelikgo.workers.dev';
+    const workerUrl = 'https://rudead.gorelikgo.workers.dev/';
     
     const lastCheckIn = localStorage.getItem('lastCheckIn');
     const daysOverdue = lastCheckIn 

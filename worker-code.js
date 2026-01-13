@@ -302,11 +302,33 @@ export default {
             
             if (!logResponse.ok) {
               console.error('Failed to send log email:', logResult);
-              // Still return success to not break user flow
+              return new Response(JSON.stringify({ 
+                success: false, 
+                error: 'Failed to send log email',
+                details: logResult 
+              }), {
+                status: 500,
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Access-Control-Allow-Origin': '*'
+                }
+              });
             }
+            
+            console.log('Log email sent successfully to:', env.ADMIN_EMAIL);
           } catch (logError) {
             console.error('Error sending log email:', logError);
-            // Still return success to not break user flow
+            return new Response(JSON.stringify({ 
+              success: false, 
+              error: 'Error sending log email',
+              details: logError.message 
+            }), {
+              status: 500,
+              headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+              }
+            });
           }
           
           return new Response(JSON.stringify({ success: true, logged: true }), {
