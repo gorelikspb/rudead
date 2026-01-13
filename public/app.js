@@ -959,7 +959,7 @@ async function sendEmergencyNotification(contact) {
     if ('Notification' in window && Notification.permission === 'granted') {
             new Notification('Are You Dead? Alert', {
             body: `Emergency contact ${contact.name} should be notified - user hasn't checked in for 4+ days`,
-            icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192"><rect width="192" height="192" fill="%231a1a1a"/><circle cx="96" cy="96" r="70" fill="none" stroke="%23ff4444" stroke-width="15"/><text x="96" y="120" font-size="100" fill="%23ff4444" text-anchor="middle" font-weight="bold">?</text></svg>'
+            icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192"><rect width="192" height="192" fill="%231a1a1a"/><circle cx="96" cy="80" r="36" fill="%23ff4444"/><rect x="70" y="80" width="52" height="38" fill="%23ff4444"/><circle cx="84" cy="76" r="8" fill="%231a1a1a"/><circle cx="108" cy="76" r="8" fill="%231a1a1a"/><path d="M 96 88 L 88 100 L 104 100 Z" fill="%231a1a1a"/><circle cx="96" cy="100" r="16" fill="none" stroke="%231a1a1a" stroke-width="3"/><line x1="96" y1="100" x2="96" y2="88" stroke="%231a1a1a" stroke-width="3"/><line x1="96" y1="100" x2="108" y2="100" stroke="%231a1a1a" stroke-width="2"/></svg>'
         });
     }
     
@@ -1042,7 +1042,7 @@ function scheduleNotification() {
             if ('Notification' in window && Notification.permission === 'granted') {
                 new Notification('Are You Dead? Reminder', {
                     body: 'Time to check in! Tap the button to confirm you\'re alive.',
-                    icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192"><rect width="192" height="192" fill="%231a1a1a"/><circle cx="96" cy="96" r="70" fill="none" stroke="%23ff4444" stroke-width="15"/><text x="96" y="120" font-size="100" fill="%23ff4444" text-anchor="middle" font-weight="bold">?</text></svg>',
+                    icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192"><rect width="192" height="192" fill="%231a1a1a"/><circle cx="96" cy="80" r="36" fill="%23ff4444"/><rect x="70" y="80" width="52" height="38" fill="%23ff4444"/><circle cx="84" cy="76" r="8" fill="%231a1a1a"/><circle cx="108" cy="76" r="8" fill="%231a1a1a"/><path d="M 96 88 L 88 100 L 104 100 Z" fill="%231a1a1a"/><circle cx="96" cy="100" r="16" fill="none" stroke="%231a1a1a" stroke-width="3"/><line x1="96" y1="100" x2="96" y2="88" stroke="%231a1a1a" stroke-width="3"/><line x1="96" y1="100" x2="108" y2="100" stroke="%231a1a1a" stroke-width="2"/></svg>',
                     tag: 'checkin-reminder'
                 });
             }
