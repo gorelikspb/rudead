@@ -1,7 +1,7 @@
 {
-  "name": "R U Dead? - Safety Check-in",
-  "short_name": "R U Dead?",
-  "description": "R U Dead? Check in every 2 days. If you don't, your emergency contact will be notified.",
+  "name": "Are You Dead? - Safety Check-in App",
+  "short_name": "Are You Dead?",
+  "description": "Are You Dead? App - Safety check-in app for people living alone. Check in every 2 days. If you don't, your emergency contact will be notified. Inspired by viral Chinese app Sileme.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#1a1a1a",

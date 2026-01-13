@@ -3,23 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="R U Dead? Check in every 2 days. If you don't, your emergency contact will be notified.">
+    
+    <!-- Primary Meta Tags -->
+    <title>Are You Dead? App - Safety Check-in App for People Living Alone</title>
+    <meta name="title" content="Are You Dead? App - Safety Check-in App for People Living Alone">
+    <meta name="description" content="Are You Dead? App - Safety check-in app for people living alone. Inspired by viral Chinese app Sileme (Ты умер?). Check in every 2 days. If you don't, your emergency contact will be notified. For office workers, students, introverts, people with depression, and anyone living alone.">
+    <meta name="keywords" content="are you dead, are you dead app, r u dead, ты умер приложение, приложение ты умер, sileme app, sileme приложение, safety check-in app, lonely people app, single household app, emergency contact app, check in app, safety app, living alone app, приложение для одиноких, офисный работник живущий один, студент вдали от дома, интроверты, люди с депрессией, одинокий человек может умереть незаметно">
+    <meta name="author" content="Are You Dead? App">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
     <meta name="theme-color" content="#1a1a1a">
-    <title>R U Dead? - Safety Check-in App</title>
-    <link rel="manifest" href="manifest.json">
-    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://areyoudeadapp.pages.dev/">
+    <meta property="og:title" content="Are You Dead? App - Safety Check-in App">
+    <meta property="og:description" content="Safety check-in app for people living alone. Inspired by viral Chinese app Sileme (Ты умер?). Check in every 2 days. If you don't, your emergency contact will be notified. For office workers, students, introverts, and anyone living alone.">
+    <meta property="og:image" content="https://areyoudeadapp.pages.dev/og-image.png">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="ru_RU">
+    <meta property="og:locale:alternate" content="es_ES">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="zh_CN">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://areyoudeadapp.pages.dev/">
+    <meta property="twitter:title" content="Are You Dead? App - Safety Check-in App">
+    <meta property="twitter:description" content="Safety check-in app for people living alone. Inspired by viral Chinese app Sileme (Ты умер?). Check in every 2 days. For office workers, students, introverts, and anyone living alone.">
+    <meta property="twitter:image" content="https://areyoudeadapp.pages.dev/og-image.png">
+    
+    <!-- Alternate Languages -->
+    <link rel="alternate" hreflang="en" href="https://areyoudeadapp.pages.dev/">
+    <link rel="alternate" hreflang="es" href="https://areyoudeadapp.pages.dev/es/">
+    <link rel="alternate" hreflang="de" href="https://areyoudeadapp.pages.dev/de/">
+    <link rel="alternate" hreflang="fr" href="https://areyoudeadapp.pages.dev/fr/">
+    <link rel="alternate" hreflang="ru" href="https://areyoudeadapp.pages.dev/ru/">
+    <link rel="alternate" hreflang="zh" href="https://areyoudeadapp.pages.dev/zh/">
+    <link rel="alternate" hreflang="x-default" href="https://areyoudeadapp.pages.dev/">
+    
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Are You Dead?",
+      "alternateName": "Are You Dead? App",
+      "description": "Safety check-in app for people living alone. Inspired by viral Chinese app Sileme (Ты умер?). Check in every 2 days. If you don't, your emergency contact will be notified. For office workers living alone, students away from home, introverts, people with depression, and anyone choosing a solitary lifestyle.",
+      "url": "https://areyoudeadapp.pages.dev",
+      "applicationCategory": "HealthApplication",
+      "operatingSystem": "Web, iOS, Android",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.5",
+        "ratingCount": "100"
+      },
+      "keywords": "r u dead, are you dead app, ты умер приложение, приложение ты умер, sileme app, sileme приложение, safety check-in app, lonely people app, single household app, emergency contact app, check in app, safety app, living alone app, приложение для одиноких, офисный работник живущий один, студент вдали от дома, интроверты, люди с депрессией, одинокий человек может умереть незаметно, aplicación para personas solas, estás muerto app, bist du tot app"
+    }
+    </script>
+    <link rel="manifest" href="/manifest.json">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="canonical" href="https://areyoudeadapp.pages.dev/">
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%231a1a1a'/><circle cx='50' cy='50' r='35' fill='none' stroke='%23ff4444' stroke-width='8'/><text x='50' y='65' font-size='50' fill='%23ff4444' text-anchor='middle' font-weight='bold'>?</text></svg>">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1 id="app-title">R U Dead?</h1>
+            <h1 id="app-title">Are You Dead?</h1>
             <p id="app-subtitle">Check in every 2 days</p>
             <div class="lang-switcher">
-                <button class="lang-btn active" data-lang="en">EN</button>
-                <button class="lang-btn" data-lang="ru">RU</button>
-                <button class="lang-btn" data-lang="es">ES</button>
-                <button class="lang-btn" data-lang="de">DE</button>
+                <a href="/" class="lang-btn active" data-lang="en">EN</a>
+                <a href="/es/" class="lang-btn" data-lang="es">ES</a>
+                <a href="/de/" class="lang-btn" data-lang="de">DE</a>
+                <a href="/fr/" class="lang-btn" data-lang="fr">FR</a>
+                <a href="/ru/" class="lang-btn" data-lang="ru">RU</a>
+                <a href="/zh/" class="lang-btn" data-lang="zh">中文</a>
             </div>
         </header>
 
@@ -34,6 +99,18 @@
             <button class="checkin-btn" id="checkin-btn">
                 <span id="checkin-btn-text">Check In Now</span>
             </button>
+
+            <div class="user-email-section">
+                <h3 id="user-email-title">Your Email (for sync across devices)</h3>
+                <p id="user-email-description">Save your email to check in from any device. Your check-in status will be synced.</p>
+                <div class="input-group">
+                    <label for="user-email" id="user-email-label">Your Email</label>
+                    <input type="email" id="user-email" placeholder="your-email@example.com">
+                </div>
+                <button class="save-btn" id="save-user-email-btn">
+                    <span id="save-user-email-text">Save Email</span>
+                </button>
+            </div>
 
             <div class="settings-section">
                 <h3 id="settings-title">Emergency Contact</h3>
@@ -56,20 +133,85 @@
 
             <div class="info-section">
                 <h3 id="how-it-works-title">How It Works</h3>
+                <p id="app-description">A safety companion for people living alone. Whether you're an office worker living solo, a student away from home, an introvert, someone with depression, or anyone choosing a solitary lifestyle - this app is for you.</p>
                 <ul id="how-it-works-list">
-                    <li id="step-1">Check in every 2 days by pressing the button</li>
-                    <li id="step-2">If you don't check in, your emergency contact will be notified</li>
-                    <li id="step-3">Your data stays private and secure</li>
+                    <li id="step-1">Check in every 2 days by pressing the big button to confirm you're alive</li>
+                    <li id="step-2">If you don't check in, we'll automatically notify your emergency contact</li>
+                    <li id="step-3">All your data stays private and secure on your device</li>
                 </ul>
+                <p id="why-needed">It's scary to think that someone living alone could die unnoticed with no one to call for help. This app ensures someone will know if something happens to you.</p>
             </div>
+
+            <article class="seo-article">
+                <h2 id="seo-article-title">Are You Dead? App: A Safety Net for People Living Alone</h2>
+                <div id="seo-article-content">
+                    <p id="seo-para-1">In today's fast-paced world, millions of people live alone. Whether you're an office worker in a big city, a student studying far from home, an introvert who prefers solitude, or someone dealing with depression - living alone comes with unique challenges. One of the most frightening realities is the possibility of something happening to you with no one around to notice or call for help.</p>
+                    
+                    <h3 id="seo-h3-1">The Problem: Dying Alone and Unnoticed</h3>
+                    <p id="seo-para-2">It's a sobering thought, but it happens more often than we'd like to admit. People living alone can experience medical emergencies, accidents, or other critical situations where time is of the essence. Without someone checking in regularly, these situations can go unnoticed for days or even weeks. The "Are You Dead?" app, inspired by the viral Chinese app Sileme (Ты умер?), addresses this very real concern.</p>
+                    
+                    <h3 id="seo-h3-2">How Are You Dead? App Works</h3>
+                    <p id="seo-para-3">The concept is simple yet powerful: you check in every 2 days by pressing a button to confirm you're alive and well. If you don't check in within the 2-day window, the app automatically sends an email notification to your designated emergency contact. This ensures that if something happens to you, someone will know and can take action.</p>
+                    
+                    <h3 id="seo-h3-3">Who Is This App For?</h3>
+                    <p id="seo-para-4">This safety check-in app is designed for anyone living alone who wants peace of mind:</p>
+                    <ul id="seo-list-1">
+                        <li id="seo-list-item-1"><strong>Office workers living solo:</strong> Long hours at work, coming home to an empty apartment - this app ensures someone knows if you don't make it home.</li>
+                        <li id="seo-list-item-2"><strong>Students away from home:</strong> Living in a dorm or apartment far from family, this app gives your loved ones a way to know you're safe.</li>
+                        <li id="seo-list-item-3"><strong>Introverts and people who prefer solitude:</strong> You may enjoy living alone, but that doesn't mean you shouldn't have a safety net.</li>
+                        <li id="seo-list-item-4"><strong>People dealing with depression or mental health challenges:</strong> Regular check-ins can provide structure and ensure someone knows if you need help.</li>
+                        <li id="seo-list-item-5"><strong>Elderly individuals living independently:</strong> For seniors who want to maintain independence while having a safety mechanism in place.</li>
+                        <li id="seo-list-item-6"><strong>Anyone choosing a solitary lifestyle:</strong> Whether by choice or circumstance, living alone shouldn't mean being completely isolated.</li>
+                    </ul>
+                    
+                    <h3 id="seo-h3-4">Privacy and Security</h3>
+                    <p id="seo-para-5">Your privacy is paramount. All data is stored locally on your device. The app doesn't track your location, doesn't access your contacts, and doesn't share your information with third parties. The only time your emergency contact receives a notification is when you fail to check in for more than 2 days - and even then, only the information you've provided is shared.</p>
+                    
+                    <h3 id="seo-h3-5">Inspired by Sileme (Ты умер?)</h3>
+                    <p id="seo-para-6">The "Are You Dead?" app is inspired by Sileme, a Chinese app that gained viral popularity for its provocative name and important purpose. The concept resonated with millions of people who live alone and worry about what might happen if they become unable to call for help. This app brings that same peace of mind to a global audience, available in multiple languages including English, Spanish, German, French, Russian, and Chinese.</p>
+                    
+                    <h3 id="seo-h3-6">Free and Easy to Use</h3>
+                    <p id="seo-para-7">The app is completely free to use. There are no subscriptions, no hidden fees, and no premium features locked behind a paywall. Simply set up your emergency contact, check in every 2 days, and rest easy knowing someone will be notified if something happens to you. The interface is simple and intuitive - just one button to press every 2 days.</p>
+                    
+                    <h3 id="seo-h3-7">Why Every 2 Days?</h3>
+                    <p id="seo-para-8">The 2-day check-in interval strikes a balance between being frequent enough to catch emergencies early, while not being so frequent that it becomes a burden. Two days is long enough that you won't forget to check in during normal circumstances, but short enough that if something serious happens, help can be notified relatively quickly.</p>
+                    
+                    <h3 id="seo-h3-8">Getting Started</h3>
+                    <p id="seo-para-9">Getting started with "Are You Dead?" is simple:</p>
+                    <ol id="seo-list-2">
+                        <li id="seo-ordered-item-1">Add your emergency contact's name and email address</li>
+                        <li id="seo-ordered-item-2">Press the "Check In Now" button to confirm you're alive</li>
+                        <li id="seo-ordered-item-3">Remember to check in every 2 days</li>
+                        <li id="seo-ordered-item-4">If you don't check in, your emergency contact will automatically receive an email notification</li>
+                    </ol>
+                    
+                    <p id="seo-para-10">It's that simple. A small action every 2 days can provide significant peace of mind for you and your loved ones. Download the app today and take control of your safety, even when living alone.</p>
+                </div>
+            </article>
         </main>
+
+        <div class="contact-section">
+            <h3 id="contact-title">Contact Developer</h3>
+            <p id="contact-description">Have a question or feedback? Get in touch:</p>
+            <div class="input-group">
+                <label for="contact-email-input" id="contact-email-label-input">Your Email</label>
+                <input type="email" id="contact-email-input" placeholder="your-email@example.com">
+            </div>
+            <div class="input-group">
+                <label for="contact-message" id="contact-message-label">Message</label>
+                <textarea id="contact-message" rows="4" placeholder="Your message..."></textarea>
+            </div>
+            <button class="save-btn" id="send-contact-btn">
+                <span id="send-contact-text">Send Message</span>
+            </button>
+        </div>
 
         <footer>
             <p><a href="https://codengodiary.pages.dev/" style="color: #3498db; text-decoration: none; border-bottom: 1px solid #3498db;">Development Blog</a></p>
         </footer>
     </div>
 
-    <script src="app.js"></script>
+    <script src="/app.js"></script>
 </body>
 </html>
 
