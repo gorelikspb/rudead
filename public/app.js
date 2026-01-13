@@ -73,11 +73,11 @@ const translations = {
         'seo-para-10': 'It\'s that simple. A small action every 2 days can provide significant peace of mind for you and your loved ones. Download the app today and take control of your safety, even when living alone.'
     },
     ru: {
-        'app-title': 'Ты умер?',
+        'app-title': 'Умер?',
         'app-subtitle': 'Отмечайся каждые 2 дня',
         'status-safe': 'Ты жив!',
         'status-warning': 'Отметься скоро',
-        'status-danger': 'Ты умер?',
+        'status-danger': 'Умер?',
         'last-checkin': 'Последняя проверка:',
         'next-checkin': 'Следующая проверка:',
         'checkin-btn-text': 'Нет',
