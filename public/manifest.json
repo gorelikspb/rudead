@@ -1,0 +1,36 @@
+{
+  "name": "R U Dead? - Safety Check-in",
+  "short_name": "R U Dead?",
+  "description": "R U Dead? Check in every 2 days. If you don't, your emergency contact will be notified.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1a1a1a",
+  "theme_color": "#1a1a1a",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' fill='%231a1a1a'/><circle cx='96' cy='96' r='70' fill='none' stroke='%23ff4444' stroke-width='15'/><text x='96' y='120' font-size='100' fill='%23ff4444' text-anchor='middle' font-weight='bold'>?</text></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' fill='%231a1a1a'/><circle cx='256' cy='256' r='180' fill='none' stroke='%23ff4444' stroke-width='25'/><text x='256' y='320' font-size='250' fill='%23ff4444' text-anchor='middle' font-weight='bold'>?</text></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["health", "lifestyle", "utilities"],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Check In",
+      "short_name": "Check In",
+      "description": "Quick check-in",
+      "url": "/?action=checkin",
+      "icons": [{ "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' fill='%231a1a1a'/><circle cx='96' cy='96' r='70' fill='none' stroke='%23ff4444' stroke-width='15'/><text x='96' y='120' font-size='100' fill='%23ff4444' text-anchor='middle' font-weight='bold'>?</text></svg>", "sizes": "192x192" }]
+    }
+  ]
+}
+

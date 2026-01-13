@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="R U Dead? Check in every 2 days. If you don't, your emergency contact will be notified.">
+    <meta name="theme-color" content="#1a1a1a">
+    <title>R U Dead? - Safety Check-in App</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%231a1a1a'/><circle cx='50' cy='50' r='35' fill='none' stroke='%23ff4444' stroke-width='8'/><text x='50' y='65' font-size='50' fill='%23ff4444' text-anchor='middle' font-weight='bold'>?</text></svg>">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 id="app-title">R U Dead?</h1>
+            <p id="app-subtitle">Check in every 2 days</p>
+            <div class="lang-switcher">
+                <button class="lang-btn active" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="ru">RU</button>
+                <button class="lang-btn" data-lang="es">ES</button>
+                <button class="lang-btn" data-lang="de">DE</button>
+            </div>
+        </header>
+
+        <main>
+            <div class="status-card" id="status-card">
+                <div class="status-icon" id="status-icon">✅</div>
+                <h2 id="status-title">You're Alive!</h2>
+                <p id="status-message">Last check-in: <span id="last-checkin">Never</span></p>
+                <p id="next-checkin-text">Next check-in due: <span id="next-checkin">-</span></p>
+            </div>
+
+            <button class="checkin-btn" id="checkin-btn">
+                <span id="checkin-btn-text">Check In Now</span>
+            </button>
+
+            <div class="settings-section">
+                <h3 id="settings-title">Emergency Contact</h3>
+                <div class="input-group">
+                    <label for="contact-name" id="contact-name-label">Contact Name</label>
+                    <input type="text" id="contact-name" placeholder="John Doe">
+                </div>
+                <div class="input-group">
+                    <label for="contact-phone" id="contact-phone-label">Phone Number</label>
+                    <input type="tel" id="contact-phone" placeholder="+1234567890">
+                </div>
+                <div class="input-group">
+                    <label for="contact-email" id="contact-email-label">Email (optional)</label>
+                    <input type="email" id="contact-email" placeholder="contact@example.com">
+                </div>
+                <button class="save-btn" id="save-contact-btn">
+                    <span id="save-contact-text">Save Contact</span>
+                </button>
+            </div>
+
+            <div class="info-section">
+                <h3 id="how-it-works-title">How It Works</h3>
+                <ul id="how-it-works-list">
+                    <li id="step-1">Check in every 2 days by pressing the button</li>
+                    <li id="step-2">If you don't check in, your emergency contact will be notified</li>
+                    <li id="step-3">Your data stays private and secure</li>
+                </ul>
+            </div>
+        </main>
+
+        <footer>
+            <p><a href="https://codengodiary.pages.dev/" style="color: #3498db; text-decoration: none; border-bottom: 1px solid #3498db;">Development Blog</a></p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
+

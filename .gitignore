@@ -1,0 +1,35 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# Environment variables
+.env
+.env.local
+*.config.local
+
+# Documentation (project-specific)
+docs/
+project-docs/
+project-instructions/
+reports/
+
+# Instructions (if copied to project)
+instructions/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Build outputs (if any)
+dist/
+build/
+
