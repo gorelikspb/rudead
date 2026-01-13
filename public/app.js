@@ -37,6 +37,11 @@ const translations = {
         'send-contact-text': 'Send Message',
         'contact-sent': 'Message sent! Thank you for your feedback.',
         'contact-error': 'Please fill in your email and message',
+        'share-title': 'Share This App',
+        'share-description': 'Help others stay safe by sharing this app with friends and family',
+        'share-text': 'Check out this safety check-in app for people living alone! Are You Dead? App - Check in every 2 days to stay safe.',
+        'share-copied': 'Copied!',
+        'punchline-label': 'Choose a message:',
         'seo-article-title': 'Are You Dead? App: A Safety Net for People Living Alone',
         'seo-para-1': 'In today\'s fast-paced world, millions of people live alone. Whether you\'re an office worker in a big city, a student studying far from home, an introvert who prefers solitude, or someone dealing with depression - living alone comes with unique challenges. One of the most frightening realities is the possibility of something happening to you with no one around to notice or call for help.',
         'seo-h3-1': 'The Problem: Dying Alone and Unnoticed',
@@ -104,6 +109,11 @@ const translations = {
         'send-contact-text': 'Отправить сообщение',
         'contact-sent': 'Сообщение отправлено! Спасибо за отзыв.',
         'contact-error': 'Заполни email и сообщение',
+        'share-title': 'Поделиться приложением',
+        'share-description': 'Помоги другим оставаться в безопасности, поделившись этим приложением с друзьями и семьей',
+        'share-text': 'Посмотри это приложение для проверки безопасности для людей, живущих одни! Ты умер? - Отмечайся каждые 2 дня, чтобы оставаться в безопасности.',
+        'share-copied': 'Скопировано!',
+        'punchline-label': 'Выбери сообщение:',
         'seo-article-title': 'Are You Dead? App: Защита для людей, живущих одни',
         'seo-para-1': 'В современном мире миллионы людей живут одни. Будь ты офисный работник в большом городе, студент, учащийся далеко от дома, интроверт, предпочитающий одиночество, или человек, борющийся с депрессией - жизнь в одиночестве имеет свои уникальные вызовы. Одна из самых пугающих реальностей - это возможность того, что с тобой что-то случится, и никто не заметит и не вызовет помощь.',
         'seo-h3-1': 'Проблема: Умереть в одиночестве незамеченным',
@@ -171,6 +181,11 @@ const translations = {
         'send-contact-text': 'Enviar Mensaje',
         'contact-sent': '¡Mensaje enviado! Gracias por tus comentarios.',
         'contact-error': 'Por favor completa tu email y mensaje',
+        'share-title': 'Compartir Esta Aplicación',
+        'share-description': 'Ayuda a otros a mantenerse seguros compartiendo esta aplicación con amigos y familiares',
+        'share-text': '¡Mira esta aplicación de registro de seguridad para personas que viven solas! ¿Estás muerto? App - Regístrate cada 2 días para mantenerte seguro.',
+        'share-copied': '¡Copiado!',
+        'punchline-label': 'Elige un mensaje:',
         'seo-article-title': 'Are You Dead? App: Una Red de Seguridad para Personas que Viven Solas',
         'seo-para-1': 'En el mundo acelerado de hoy, millones de personas viven solas. Ya seas un trabajador de oficina en una gran ciudad, un estudiante lejos de casa, un introvertido que prefiere la soledad, o alguien que lidia con la depresión - vivir solo viene con desafíos únicos. Una de las realidades más aterradoras es la posibilidad de que algo te pase sin que nadie esté cerca para notarlo o llamar por ayuda.',
         'seo-h3-1': 'El Problema: Morir Solo y Desapercibido',
@@ -238,6 +253,11 @@ const translations = {
         'send-contact-text': 'Nachricht senden',
         'contact-sent': 'Nachricht gesendet! Vielen Dank für dein Feedback.',
         'contact-error': 'Bitte gib deine E-Mail und Nachricht ein',
+        'share-title': 'Diese App teilen',
+        'share-description': 'Hilf anderen, sicher zu bleiben, indem du diese App mit Freunden und Familie teilst',
+        'share-text': 'Schau dir diese Sicherheits-Check-in-App für Alleinlebende an! Bist du tot? App - Melde dich alle 2 Tage an, um sicher zu bleiben.',
+        'share-copied': 'Kopiert!',
+        'punchline-label': 'Wähle eine Nachricht:',
         'seo-article-title': 'Are You Dead? App: Ein Sicherheitsnetz für Alleinlebende',
         'seo-para-1': 'In der schnelllebigen Welt von heute leben Millionen von Menschen allein. Ob du ein Büroangestellter in einer großen Stadt bist, ein Student weit weg von zu Hause, ein Introvertierter, der Einsamkeit bevorzugt, oder jemand, der mit Depressionen zu kämpfen hat - allein zu leben bringt einzigartige Herausforderungen mit sich. Eine der beängstigendsten Realitäten ist die Möglichkeit, dass dir etwas passiert, ohne dass jemand in der Nähe ist, der es bemerkt oder Hilfe holt.',
         'seo-h3-1': 'Das Problem: Allein und unbemerkt sterben',
@@ -305,6 +325,11 @@ const translations = {
         'send-contact-text': 'Envoyer le Message',
         'contact-sent': 'Message envoyé! Merci pour vos commentaires.',
         'contact-error': 'Veuillez remplir votre email et message',
+        'share-title': 'Partager Cette Application',
+        'share-description': 'Aidez les autres à rester en sécurité en partageant cette application avec vos amis et votre famille',
+        'share-text': 'Découvrez cette application de vérification de sécurité pour les personnes vivant seules! Es-tu mort? App - Enregistrez-vous tous les 2 jours pour rester en sécurité.',
+        'share-copied': 'Copié!',
+        'punchline-label': 'Choisissez un message:',
         'seo-article-title': 'Are You Dead? App: Un Filet de Sécurité pour les Personnes Vivant Seules',
         'seo-para-1': 'Dans le monde trépidant d\'aujourd\'hui, des millions de personnes vivent seules. Que tu sois un travailleur de bureau dans une grande ville, un étudiant loin de chez lui, un introverti qui préfère la solitude, ou quelqu\'un qui lutte contre la dépression - vivre seul vient avec des défis uniques. L\'une des réalités les plus effrayantes est la possibilité que quelque chose t\'arrive sans que personne ne soit là pour le remarquer ou appeler à l\'aide.',
         'seo-h3-1': 'Le Problème: Mourir Seul et Inaperçu',
@@ -372,6 +397,11 @@ const translations = {
         'send-contact-text': '发送消息',
         'contact-sent': '消息已发送！感谢您的反馈。',
         'contact-error': '请填写邮箱和消息',
+        'share-title': '分享此应用',
+        'share-description': '通过与朋友和家人分享此应用，帮助他人保持安全',
+        'share-text': '看看这个为独居人士设计的安全签到应用！Sileme - 每2天签到一次，保持安全。',
+        'share-copied': '已复制！',
+        'punchline-label': '选择消息：',
         'seo-article-title': 'Sileme：独居人士的安全网',
         'seo-para-1': '在当今快节奏的世界中，数百万人独自生活。无论你是大城市的上班族、远离家乡的学生、喜欢独处的内向者，还是正在与抑郁症作斗争的人——独自生活都面临着独特的挑战。最令人恐惧的现实之一是，如果发生什么事情，周围没有人注意到或寻求帮助。',
         'seo-h3-1': '问题：独自死去而不被注意',
@@ -407,6 +437,71 @@ const translations = {
 // App state
 let currentLang = localStorage.getItem('lang') || 'en';
 const CHECK_IN_INTERVAL = 2 * 24 * 60 * 60 * 1000; // 2 days in milliseconds
+let currentPunchlineIndex = 0;
+
+// Punchlines for sharing
+const punchlines = {
+    ru: [
+        "Если ты не ответишь на это сообщение через 2 дня, я буду знать, что ты мертв 😅 Проверь приложение: https://areyoudeadapp.pages.dev",
+        "Живешь один и боишься умереть незамеченным? Есть приложение, которое проверит, не стал ли ты призраком 👻 https://areyoudeadapp.pages.dev",
+        "Наконец-то приложение, которое ответит на вопрос 'Ты еще жив?' лучше, чем твоя мама в 3 утра 📱 https://areyoudeadapp.pages.dev",
+        "Одинокие люди, объединяйтесь! Нет, подождите... Просто установите это приложение, чтобы кто-то знал, если с вами что-то случится 😄 https://areyoudeadapp.pages.dev",
+        "Приложение для тех, кто живет один и хочет убедиться, что их найдут, если они умрут. Мрачно? Да. Полезно? Тоже да! https://areyoudeadapp.pages.dev",
+        "Твоя мама звонит каждые 2 дня? Теперь можешь заменить ее приложением! https://areyoudeadapp.pages.dev",
+        "Живешь один и никто не заметит, если ты умрешь? Есть решение! Проверь: https://areyoudeadapp.pages.dev",
+        "Приложение для интровертов, которые хотят быть уверены, что их найдут после смерти 😅 https://areyoudeadapp.pages.dev"
+    ],
+    en: [
+        "If you don't reply to this message in 2 days, I'll know you're dead 😅 Check out the app: https://areyoudeadapp.pages.dev",
+        "Living alone and afraid of dying unnoticed? There's an app that will check if you've become a ghost 👻 https://areyoudeadapp.pages.dev",
+        "Finally, an app that answers 'Are you still alive?' better than your mom at 3 AM 📱 https://areyoudeadapp.pages.dev",
+        "Lonely people, unite! No wait... Just install this app so someone knows if something happens to you 😄 https://areyoudeadapp.pages.dev",
+        "An app for those who live alone and want to make sure they'll be found if they die. Dark? Yes. Useful? Also yes! https://areyoudeadapp.pages.dev",
+        "Your mom calls every 2 days? Now you can replace her with an app! https://areyoudeadapp.pages.dev",
+        "Living alone and no one will notice if you die? There's a solution! Check it out: https://areyoudeadapp.pages.dev",
+        "An app for introverts who want to make sure they'll be found after death 😅 https://areyoudeadapp.pages.dev"
+    ],
+    es: [
+        "Si no respondes a este mensaje en 2 días, sabré que estás muerto 😅 Mira la aplicación: https://areyoudeadapp.pages.dev",
+        "¿Vives solo y temes morir sin que nadie se dé cuenta? Hay una aplicación que verificará si te has convertido en un fantasma 👻 https://areyoudeadapp.pages.dev",
+        "Finalmente, una aplicación que responde '¿Sigues vivo?' mejor que tu mamá a las 3 AM 📱 https://areyoudeadapp.pages.dev",
+        "¡Gente solitaria, únanse! No esperen... Solo instalen esta aplicación para que alguien sepa si algo te pasa 😄 https://areyoudeadapp.pages.dev",
+        "Una aplicación para aquellos que viven solos y quieren asegurarse de que los encuentren si mueren. ¿Oscuro? Sí. ¿Útil? ¡También sí! https://areyoudeadapp.pages.dev",
+        "¿Tu mamá llama cada 2 días? ¡Ahora puedes reemplazarla con una aplicación! https://areyoudeadapp.pages.dev",
+        "¿Vives solo y nadie notará si mueres? ¡Hay una solución! Échale un vistazo: https://areyoudeadapp.pages.dev",
+        "Una aplicación para introvertidos que quieren asegurarse de ser encontrados después de la muerte 😅 https://areyoudeadapp.pages.dev"
+    ],
+    de: [
+        "Wenn du nicht innerhalb von 2 Tagen auf diese Nachricht antwortest, werde ich wissen, dass du tot bist 😅 Schau dir die App an: https://areyoudeadapp.pages.dev",
+        "Lebst du allein und hast Angst, unbemerkt zu sterben? Es gibt eine App, die überprüft, ob du ein Geist geworden bist 👻 https://areyoudeadapp.pages.dev",
+        "Endlich eine App, die 'Bist du noch am Leben?' besser beantwortet als deine Mama um 3 Uhr morgens 📱 https://areyoudeadapp.pages.dev",
+        "Einsame Menschen, vereinigt euch! Nein, wartet... Installiert einfach diese App, damit jemand weiß, wenn euch etwas passiert 😄 https://areyoudeadapp.pages.dev",
+        "Eine App für diejenigen, die allein leben und sicherstellen wollen, dass sie gefunden werden, wenn sie sterben. Düster? Ja. Nützlich? Auch ja! https://areyoudeadapp.pages.dev",
+        "Deine Mama ruft alle 2 Tage an? Jetzt kannst du sie durch eine App ersetzen! https://areyoudeadapp.pages.dev",
+        "Lebst du allein und niemand wird merken, wenn du stirbst? Es gibt eine Lösung! Schau es dir an: https://areyoudeadapp.pages.dev",
+        "Eine App für Introvertierte, die sicherstellen wollen, dass sie nach dem Tod gefunden werden 😅 https://areyoudeadapp.pages.dev"
+    ],
+    fr: [
+        "Si tu ne réponds pas à ce message dans 2 jours, je saurai que tu es mort 😅 Découvre l'application: https://areyoudeadapp.pages.dev",
+        "Tu vis seul et tu as peur de mourir sans que personne ne s'en aperçoive? Il y a une application qui vérifiera si tu es devenu un fantôme 👻 https://areyoudeadapp.pages.dev",
+        "Enfin, une application qui répond 'Es-tu encore vivant?' mieux que ta maman à 3h du matin 📱 https://areyoudeadapp.pages.dev",
+        "Gens solitaires, unissez-vous! Non attendez... Installez simplement cette application pour que quelqu'un sache si quelque chose vous arrive 😄 https://areyoudeadapp.pages.dev",
+        "Une application pour ceux qui vivent seuls et veulent s'assurer qu'ils seront trouvés s'ils meurent. Sombre? Oui. Utile? Aussi oui! https://areyoudeadapp.pages.dev",
+        "Ta maman appelle tous les 2 jours? Maintenant tu peux la remplacer par une application! https://areyoudeadapp.pages.dev",
+        "Tu vis seul et personne ne remarquera si tu meurs? Il y a une solution! Découvre-la: https://areyoudeadapp.pages.dev",
+        "Une application pour les introvertis qui veulent s'assurer d'être trouvés après la mort 😅 https://areyoudeadapp.pages.dev"
+    ],
+    zh: [
+        "如果你在2天内不回复这条消息，我就知道你已经死了😅 看看这个应用：https://areyoudeadapp.pages.dev",
+        "独自生活，害怕死得无人知晓？有一个应用会检查你是否变成了鬼👻 https://areyoudeadapp.pages.dev",
+        "终于有一个应用能比凌晨3点你妈妈更好地回答'你还活着吗？'这个问题📱 https://areyoudeadapp.pages.dev",
+        "孤独的人们，团结起来！不，等等...只需安装这个应用，这样如果有人发生什么事，就会有人知道😄 https://areyoudeadapp.pages.dev",
+        "一个为独居者设计的应用，确保如果他们死了会被找到。黑暗？是的。有用？也是的！https://areyoudeadapp.pages.dev",
+        "你妈妈每2天打电话？现在你可以用应用代替她！https://areyoudeadapp.pages.dev",
+        "独自生活，没人会注意到你死了？有解决方案！看看：https://areyoudeadapp.pages.dev",
+        "一个为内向者设计的应用，他们想确保死后会被找到😅 https://areyoudeadapp.pages.dev"
+    ]
+};
 
 // Initialize app
 function init() {
@@ -532,6 +627,13 @@ function loadLanguage(lang) {
     // Update SEO article
     updateSEOArticle(lang);
     
+    // Update share section
+    updateShareSection(lang);
+    
+    // Update punchline when language changes
+    currentPunchlineIndex = 0;
+    updatePunchline();
+    
     updateCheckInStatus();
 }
 
@@ -626,6 +728,26 @@ function updateSEOArticle(lang) {
             li.textContent = t[orderedKey];
         }
     });
+}
+
+// Update share section text
+function updateShareSection(lang) {
+    const t = translations[lang] || translations.en;
+    
+    const shareTitle = document.getElementById('share-title');
+    if (shareTitle && t['share-title']) {
+        shareTitle.textContent = t['share-title'];
+    }
+    
+    const shareDescription = document.getElementById('share-description');
+    if (shareDescription && t['share-description']) {
+        shareDescription.textContent = t['share-description'];
+    }
+    
+    const punchlineLabel = document.getElementById('punchline-label');
+    if (punchlineLabel && t['punchline-label']) {
+        punchlineLabel.textContent = t['punchline-label'];
+    }
 }
 
 // Load emergency contact from localStorage
@@ -1095,8 +1217,227 @@ function setupEventListeners() {
     // Contact developer button
     document.getElementById('send-contact-btn').addEventListener('click', sendContactMessage);
     
+    // Share buttons
+    setupShareButtons();
+    
+    // Setup punchline selector
+    setupPunchlineSelector();
+    
+    // Setup floating share button and modal
+    setupShareModal();
+    
+    // Check for native share API
+    if (navigator.share) {
+        const nativeBtn = document.getElementById('share-native-btn');
+        if (nativeBtn) {
+            nativeBtn.style.display = 'flex';
+            nativeBtn.style.alignItems = 'center';
+            nativeBtn.style.justifyContent = 'center';
+        }
+    }
+    
     // Update status every minute
     setInterval(updateCheckInStatus, 60 * 1000);
+}
+
+// Share functionality
+function setupShareButtons() {
+    const shareButtons = document.querySelectorAll('.share-btn');
+    shareButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const platform = btn.dataset.platform;
+            if (platform) {
+                shareToPlatform(platform);
+            }
+        });
+    });
+}
+
+// Setup punchline selector
+function setupPunchlineSelector() {
+    const punchlineTextarea = document.getElementById('share-punchline');
+    const changeBtn = document.getElementById('change-punchline-btn');
+    
+    if (!punchlineTextarea) return;
+    
+    // Initialize with first punchline
+    updatePunchline();
+    
+    // Change punchline on button click
+    if (changeBtn) {
+        changeBtn.addEventListener('click', () => {
+            currentPunchlineIndex = (currentPunchlineIndex + 1) % getPunchlinesForLang().length;
+            updatePunchline();
+        });
+    }
+}
+
+function getPunchlinesForLang() {
+    return punchlines[currentLang] || punchlines.en;
+}
+
+function updatePunchline() {
+    const punchlineTextarea = document.getElementById('share-punchline');
+    if (!punchlineTextarea) return;
+    
+    const langPunchlines = getPunchlinesForLang();
+    if (langPunchlines.length > 0) {
+        currentPunchlineIndex = currentPunchlineIndex % langPunchlines.length;
+        punchlineTextarea.value = langPunchlines[currentPunchlineIndex];
+    }
+}
+
+// Setup share modal
+function setupShareModal() {
+    const floatingBtn = document.getElementById('floating-share-btn');
+    const modalOverlay = document.getElementById('share-modal-overlay');
+    const modalClose = document.getElementById('share-modal-close');
+    
+    if (!floatingBtn || !modalOverlay) return;
+    
+    // Open modal
+    floatingBtn.addEventListener('click', () => {
+        modalOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    });
+    
+    // Close modal
+    if (modalClose) {
+        modalClose.addEventListener('click', closeShareModal);
+    }
+    
+    // Close on overlay click
+    modalOverlay.addEventListener('click', (e) => {
+        if (e.target === modalOverlay) {
+            closeShareModal();
+        }
+    });
+    
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
+            closeShareModal();
+        }
+    });
+}
+
+function closeShareModal() {
+    const modalOverlay = document.getElementById('share-modal-overlay');
+    if (modalOverlay) {
+        modalOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+
+function shareToPlatform(platform) {
+    const url = 'https://areyoudeadapp.pages.dev';
+    const title = translations[currentLang]?.['share-title'] || 'Are You Dead? App';
+    
+    // Get current punchline from textarea
+    const punchlineTextarea = document.getElementById('share-punchline');
+    const text = punchlineTextarea ? punchlineTextarea.value.trim() : (translations[currentLang]?.['share-text'] || 'Check out this safety check-in app for people living alone!');
+    
+    let shareUrl = '';
+    
+    switch(platform) {
+        case 'facebook':
+            shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+            window.open(shareUrl, '_blank', 'width=600,height=400');
+            break;
+        case 'twitter':
+            shareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`;
+            window.open(shareUrl, '_blank', 'width=600,height=400');
+            break;
+        case 'whatsapp':
+            // WhatsApp uses the text directly, URL is already in punchline
+            shareUrl = `https://wa.me/?text=${encodeURIComponent(text)}`;
+            window.open(shareUrl, '_blank');
+            break;
+        case 'telegram':
+            shareUrl = `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`;
+            window.open(shareUrl, '_blank', 'width=600,height=400');
+            break;
+        case 'linkedin':
+            shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
+            window.open(shareUrl, '_blank', 'width=600,height=400');
+            break;
+        case 'vk':
+            shareUrl = `https://vk.com/share.php?url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}&description=${encodeURIComponent(text)}`;
+            window.open(shareUrl, '_blank', 'width=600,height=400');
+            break;
+        case 'email':
+            shareUrl = `mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(text + '\n\n' + url)}`;
+            window.location.href = shareUrl;
+            break;
+        case 'copy':
+            copyToClipboard(url);
+            // Don't close modal for copy, user might want to copy again
+            break;
+        case 'native':
+            if (navigator.share) {
+                navigator.share({
+                    title: title,
+                    text: text,
+                    url: url
+                }).then(() => {
+                    closeShareModal();
+                }).catch(err => console.log('Error sharing:', err));
+            }
+            break;
+    }
+    
+    // Close modal after sharing (except for copy)
+    if (platform !== 'copy' && platform !== 'native') {
+        setTimeout(() => {
+            closeShareModal();
+        }, 300);
+    }
+}
+
+function copyToClipboard(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(() => {
+            const copyBtn = document.querySelector('.share-copy');
+            const copyText = document.getElementById('share-copy-text');
+            if (copyBtn && copyText) {
+                const originalText = copyText.textContent;
+                copyText.textContent = translations[currentLang]?.['share-copied'] || 'Copied!';
+                setTimeout(() => {
+                    copyText.textContent = originalText;
+                }, 2000);
+            }
+        }).catch(err => {
+            console.error('Failed to copy:', err);
+            fallbackCopyToClipboard(text);
+        });
+    } else {
+        fallbackCopyToClipboard(text);
+    }
+}
+
+function fallbackCopyToClipboard(text) {
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    textArea.style.position = 'fixed';
+    textArea.style.left = '-999999px';
+    document.body.appendChild(textArea);
+    textArea.select();
+    try {
+        document.execCommand('copy');
+        const copyBtn = document.querySelector('.share-copy');
+        const copyText = document.getElementById('share-copy-text');
+        if (copyBtn && copyText) {
+            const originalText = copyText.textContent;
+            copyText.textContent = translations[currentLang]?.['share-copied'] || 'Copied!';
+            setTimeout(() => {
+                copyText.textContent = originalText;
+            }, 2000);
+        }
+    } catch (err) {
+        console.error('Fallback copy failed:', err);
+    }
+    document.body.removeChild(textArea);
 }
 
 // Initialize on page load

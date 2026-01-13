@@ -19,7 +19,11 @@
     <meta property="og:url" content="https://areyoudeadapp.pages.dev/">
     <meta property="og:title" content="Are You Dead? App - Safety Check-in App">
     <meta property="og:description" content="Safety check-in app for people living alone. Inspired by viral Chinese app Sileme (Ты умер?). Check in every 2 days. If you don't, your emergency contact will be notified. For office workers, students, introverts, and anyone living alone.">
-    <meta property="og:image" content="https://areyoudeadapp.pages.dev/og-image.png">
+    <meta property="og:image" content="https://areyoudeadapp.pages.dev/og-image.svg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/svg+xml">
+    <meta property="og:image:alt" content="Are You Dead? App - Skull with clock icon">
     <meta property="og:locale" content="en_US">
     <meta property="og:locale:alternate" content="ru_RU">
     <meta property="og:locale:alternate" content="es_ES">
@@ -32,7 +36,7 @@
     <meta property="twitter:url" content="https://areyoudeadapp.pages.dev/">
     <meta property="twitter:title" content="Are You Dead? App - Safety Check-in App">
     <meta property="twitter:description" content="Safety check-in app for people living alone. Inspired by viral Chinese app Sileme (Ты умер?). Check in every 2 days. For office workers, students, introverts, and anyone living alone.">
-    <meta property="twitter:image" content="https://areyoudeadapp.pages.dev/og-image.png">
+    <meta property="twitter:image" content="https://areyoudeadapp.pages.dev/og-image.svg">
     
     <!-- Alternate Languages -->
     <link rel="alternate" hreflang="en" href="https://areyoudeadapp.pages.dev/">
@@ -78,6 +82,11 @@
         <header>
             <h1 id="app-title">Are You Dead?</h1>
             <p id="app-subtitle">Check in every 2 days</p>
+            <button class="floating-share-btn" id="floating-share-btn" title="Share">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                    <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/>
+                </svg>
+            </button>
             <div class="lang-switcher">
                 <a href="/" class="lang-btn active" data-lang="en">EN</a>
                 <a href="/es/" class="lang-btn" data-lang="es">ES</a>
@@ -201,6 +210,85 @@
                 </div>
             </article>
         </main>
+
+        <!-- Share Modal -->
+        <div class="modal-overlay" id="share-modal-overlay">
+            <div class="modal-content share-modal">
+                <button class="modal-close" id="share-modal-close">&times;</button>
+                <h3 id="share-title">Share This App</h3>
+                <p id="share-description">Help others stay safe by sharing this app with friends and family</p>
+                
+                <div class="punchline-selector">
+                    <label for="share-punchline" id="punchline-label">Choose a message:</label>
+                    <div class="punchline-input-wrapper">
+                        <textarea id="share-punchline" rows="3" readonly></textarea>
+                        <button class="punchline-change-btn" id="change-punchline-btn" title="Another message">
+                            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                                <path d="M7.5 5.6L10 7 8.6 4.5C8.3 3.9 7.7 3.5 7 3.5c-1.1 0-2 .9-2 2 0 .7.4 1.3 1 1.6zm13.5 1.4c-.8 0-1.5.7-1.5 1.5s.7 1.5 1.5 1.5S22.5 9.3 22.5 8.5 21.8 7 21 7zm-1.1-2.9c-.2-.6-.8-1-1.4-1-.8 0-1.5.7-1.5 1.5 0 .6.4 1.2 1 1.4L19 8.5l1.5-1.5-1.4-2.9zM2.5 7c-.8 0-1.5.7-1.5 1.5S1.7 10 2.5 10 4 9.3 4 8.5 3.3 7 2.5 7zm14.5 2.5c0-.8-.7-1.5-1.5-1.5s-1.5.7-1.5 1.5.7 1.5 1.5 1.5 1.5-.7 1.5-1.5zm2.5 2.5c-.8 0-1.5.7-1.5 1.5s.7 1.5 1.5 1.5S21 14.3 21 13.5 20.3 12 19.5 12zm-15 0c-.8 0-1.5.7-1.5 1.5S3.7 15 4.5 15 6 14.3 6 13.5 5.3 12 4.5 12zm11 2.5c0-.8-.7-1.5-1.5-1.5s-1.5.7-1.5 1.5.7 1.5 1.5 1.5 1.5-.7 1.5-1.5zm-9 0c0-.8-.7-1.5-1.5-1.5S4 13.2 4 14s.7 1.5 1.5 1.5S7 14.8 7 14zm2.5 2.5c-.8 0-1.5.7-1.5 1.5s.7 1.5 1.5 1.5 1.5-.7 1.5-1.5-.7-1.5-1.5-1.5zm7 0c-.8 0-1.5.7-1.5 1.5s.7 1.5 1.5 1.5 1.5-.7 1.5-1.5-.7-1.5-1.5-1.5z"/>
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="share-buttons">
+                    <button class="share-btn share-facebook" data-platform="facebook" title="Share on Facebook">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        </svg>
+                        <span>Facebook</span>
+                    </button>
+                    <button class="share-btn share-twitter" data-platform="twitter" title="Share on Twitter/X">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                        </svg>
+                        <span>Twitter</span>
+                    </button>
+                    <button class="share-btn share-whatsapp" data-platform="whatsapp" title="Share on WhatsApp">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                        </svg>
+                        <span>WhatsApp</span>
+                    </button>
+                    <button class="share-btn share-telegram" data-platform="telegram" title="Share on Telegram">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                            <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                        </svg>
+                        <span>Telegram</span>
+                    </button>
+                    <button class="share-btn share-linkedin" data-platform="linkedin" title="Share on LinkedIn">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                        <span>LinkedIn</span>
+                    </button>
+                    <button class="share-btn share-vk" data-platform="vk" title="Share on VK">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                            <path d="M15.684 0H8.316C1.592 0 0 1.592 0 8.316v7.368C0 22.408 1.592 24 8.316 24h7.368C22.408 24 24 22.408 24 15.684V8.316C24 1.592 22.408 0 15.684 0zm3.692 17.123h-1.744c-.66 0-.864-.525-2.05-1.727-1.696-1.69-2.453-.015-2.453 0-.378.36-.553.529-.764.529-.28 0-.454-.15-.454-.576V8.718c0-.51.086-.718.38-.718.315 0 .42.157.64.388 2.073 2.415 3.38 3.95 3.38 3.95.21.24.35.33.51.33.28 0 .45-.15.45-.45V8.718c0-.51.086-.718.38-.718h1.744c.315 0 .42.157.42.315 0 .33-.525 3.465-2.73 5.64-.42.42-.58.63-.58.9 0 .33.18.405.42.405h1.744c.315 0 .525-.15.42-.525-.21-1.155-2.73-4.725-2.73-4.725-.21-.315-.15-.405 0-.66.015-.015 2.07-2.745 2.835-3.75.18-.24.315-.33.525-.33h1.744c.45 0 .525.24.42.525l-3.9 7.35c-.18.36-.15.51 0 .66.15.18.42.24.66.24z"/>
+                        </svg>
+                        <span>VK</span>
+                    </button>
+                    <button class="share-btn share-email" data-platform="email" title="Share via Email">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                        </svg>
+                        <span>Email</span>
+                    </button>
+                    <button class="share-btn share-copy" data-platform="copy" title="Copy Link">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                            <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                        </svg>
+                        <span id="share-copy-text">Copy Link</span>
+                    </button>
+                    <button class="share-btn share-native" id="share-native-btn" data-platform="native" title="Share" style="display: none;">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                            <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/>
+                        </svg>
+                        <span>Share</span>
+                    </button>
+                </div>
+            </div>
+        </div>
 
         <footer>
             <p><a href="https://codengodiary.pages.dev/" style="color: #3498db; text-decoration: none; border-bottom: 1px solid #3498db;">Development Blog</a></p>
