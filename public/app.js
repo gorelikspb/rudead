@@ -11,8 +11,7 @@ const translations = {
         'checkin-btn-text': 'Check In Now',
         'settings-title': 'Emergency Contact',
         'contact-name-label': 'Contact Name',
-        'contact-phone-label': 'Phone Number',
-        'contact-email-label': 'Email (optional)',
+        'contact-email-label': 'Email',
         'save-contact-text': 'Save Contact',
         'how-it-works-title': 'How It Works',
         'app-description': 'A safety companion for people living alone. Whether you\'re an office worker living solo, a student away from home, an introvert, someone with depression, or anyone choosing a solitary lifestyle - this app is for you.',
@@ -79,8 +78,7 @@ const translations = {
         'checkin-btn-text': 'Отметиться сейчас',
         'settings-title': 'Контакт для экстренных случаев',
         'contact-name-label': 'Имя контакта',
-        'contact-phone-label': 'Номер телефона',
-        'contact-email-label': 'Email (необязательно)',
+        'contact-email-label': 'Email',
         'save-contact-text': 'Сохранить контакт',
         'how-it-works-title': 'Как это работает',
         'app-description': 'Компаньон по безопасности для людей, живущих в одиночку. Независимо от того, являетесь ли вы офисным работником, живущим в одиночку, студентом вдали от дома, интровертом, человеком с депрессией или человеком, сознательно выбравшим уединенный образ жизни - это приложение для вас.',
@@ -147,8 +145,7 @@ const translations = {
         'checkin-btn-text': 'Registrarse ahora',
         'settings-title': 'Contacto de emergencia',
         'contact-name-label': 'Nombre del contacto',
-        'contact-phone-label': 'Número de teléfono',
-        'contact-email-label': 'Email (opcional)',
+        'contact-email-label': 'Email',
         'save-contact-text': 'Guardar contacto',
         'how-it-works-title': 'Cómo Funciona',
         'app-description': 'Un compañero de seguridad para personas que viven solas. Ya seas un trabajador de oficina viviendo solo, un estudiante lejos de casa, un introvertido, alguien con depresión, o cualquiera que elija un estilo de vida solitario - esta aplicación es para ti.',
@@ -215,8 +212,7 @@ const translations = {
         'checkin-btn-text': 'Jetzt einchecken',
         'settings-title': 'Notfallkontakt',
         'contact-name-label': 'Kontaktname',
-        'contact-phone-label': 'Telefonnummer',
-        'contact-email-label': 'E-Mail (optional)',
+        'contact-email-label': 'E-Mail',
         'save-contact-text': 'Kontakt speichern',
         'how-it-works-title': 'Wie es funktioniert',
         'app-description': 'Ein Sicherheitsbegleiter für Menschen, die allein leben. Ob du ein allein lebender Büroangestellter, ein Student weit weg von zu Hause, ein Introvertierter, jemand mit Depressionen oder jemand bist, der bewusst einen einsamen Lebensstil gewählt hat - diese App ist für dich.',
@@ -283,8 +279,7 @@ const translations = {
         'checkin-btn-text': 'Enregistre-toi maintenant',
         'settings-title': 'Contact d\'urgence',
         'contact-name-label': 'Nom du contact',
-        'contact-phone-label': 'Numéro de téléphone',
-        'contact-email-label': 'Email (optionnel)',
+        'contact-email-label': 'Email',
         'save-contact-text': 'Enregistrer le contact',
         'how-it-works-title': 'Comment ça fonctionne',
         'app-description': 'Un compagnon de sécurité pour les personnes qui vivent seules. Que tu sois un travailleur de bureau vivant seul, un étudiant loin de chez lui, un introverti, quelqu\'un avec une dépression, ou quiconque choisissant un mode de vie solitaire - cette application est pour toi.',
@@ -351,8 +346,7 @@ const translations = {
         'checkin-btn-text': '立即签到',
         'settings-title': '紧急联系人',
         'contact-name-label': '联系人姓名',
-        'contact-phone-label': '电话号码',
-        'contact-email-label': '邮箱（可选）',
+        'contact-email-label': '邮箱',
         'save-contact-text': '保存联系人',
         'how-it-works-title': '如何使用',
         'app-description': '独居人士的安全伴侣。无论你是独居的上班族、远离家乡的学生、内向的人、抑郁症患者，还是选择独居生活方式的任何人——这个应用都适合你。',
@@ -638,7 +632,6 @@ function updateSEOArticle(lang) {
 function loadContact() {
     const contact = JSON.parse(localStorage.getItem('emergencyContact') || '{}');
     if (contact.name) document.getElementById('contact-name').value = contact.name;
-    if (contact.phone) document.getElementById('contact-phone').value = contact.phone;
     if (contact.email) document.getElementById('contact-email').value = contact.email;
 }
 
@@ -646,10 +639,9 @@ function loadContact() {
 function saveContact() {
     try {
         const nameInput = document.getElementById('contact-name');
-        const phoneInput = document.getElementById('contact-phone');
         const emailInput = document.getElementById('contact-email');
         
-        if (!nameInput || !phoneInput || !emailInput) {
+        if (!nameInput || !emailInput) {
             console.error('Contact form inputs not found');
             alert('Error: Form inputs not found');
             return;
@@ -657,12 +649,11 @@ function saveContact() {
         
         const contact = {
             name: nameInput.value.trim(),
-            phone: phoneInput.value.trim(),
             email: emailInput.value.trim()
         };
         
-        if (!contact.name || !contact.phone) {
-            const errorMsg = translations[currentLang]?.['contact-error'] || 'Please fill in name and phone number';
+        if (!contact.name || !contact.email || !contact.email.includes('@')) {
+            const errorMsg = translations[currentLang]?.['contact-error'] || 'Please fill in name and email';
             alert(errorMsg);
             return;
         }
@@ -670,22 +661,20 @@ function saveContact() {
         localStorage.setItem('emergencyContact', JSON.stringify(contact));
         
         // Save to email history
-        if (contact.email) {
-            saveEmailToHistory({
-                type: 'contact',
-                email: contact.email,
-                name: contact.name,
-                phone: contact.phone,
-                timestamp: new Date().toISOString()
-            });
-        }
+        saveEmailToHistory({
+            type: 'contact',
+            email: contact.email,
+            name: contact.name,
+            phone: 'Not provided',
+            timestamp: new Date().toISOString()
+        });
         
         // Log contact email to admin
         logEmailToAdmin({
             type: 'contact',
             email: contact.email,
             name: contact.name,
-            phone: contact.phone
+            phone: 'Not provided'
         });
         
         const successMsg = translations[currentLang]?.['contact-saved'] || 'Contact saved!';
@@ -799,7 +788,7 @@ function updateCheckInStatus() {
 // Check if emergency notification should be sent
 function checkEmergencyNotification(lastCheckInTime) {
     const contact = JSON.parse(localStorage.getItem('emergencyContact') || '{}');
-    if (!contact.name || !contact.phone) return;
+    if (!contact.name || !contact.email) return;
     
     const now = new Date().getTime();
     const timeSinceCheckIn = now - lastCheckInTime;
@@ -980,7 +969,7 @@ async function sendEmergencyNotification(contact) {
             type: 'emergency',
             email: contact.email,
             name: contact.name,
-            phone: contact.phone
+            phone: 'Not provided'
         });
     }
     
@@ -999,8 +988,8 @@ async function sendEmergencyNotification(contact) {
             body: JSON.stringify({
                 type: 'emergency',
                 contact_name: contact.name,
-                contact_phone: contact.phone,
-                contact_email: contact.email || contact.phone,
+                contact_phone: 'Not provided',
+                contact_email: contact.email,
                 days_overdue: daysOverdue,
                 last_checkin: lastCheckIn 
                     ? new Date(parseInt(lastCheckIn)).toLocaleString()

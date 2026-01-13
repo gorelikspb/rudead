@@ -119,12 +119,8 @@
                     <input type="text" id="contact-name" placeholder="John Doe">
                 </div>
                 <div class="input-group">
-                    <label for="contact-phone" id="contact-phone-label">Phone Number</label>
-                    <input type="tel" id="contact-phone" placeholder="+1234567890">
-                </div>
-                <div class="input-group">
-                    <label for="contact-email" id="contact-email-label">Email (optional)</label>
-                    <input type="email" id="contact-email" placeholder="contact@example.com">
+                    <label for="contact-email" id="contact-email-label">Email</label>
+                    <input type="email" id="contact-email" placeholder="contact@example.com" required>
                 </div>
                 <button class="save-btn" id="save-contact-btn">
                     <span id="save-contact-text">Save Contact</span>
@@ -140,6 +136,22 @@
                     <li id="step-3">All your data stays private and secure on your device</li>
                 </ul>
                 <p id="why-needed">It's scary to think that someone living alone could die unnoticed with no one to call for help. This app ensures someone will know if something happens to you.</p>
+            </div>
+
+            <div class="contact-section">
+                <h3 id="contact-title">Contact Developer</h3>
+                <p id="contact-description">Have a question or feedback? Get in touch:</p>
+                <div class="input-group">
+                    <label for="contact-email-input" id="contact-email-label-input">Your Email</label>
+                    <input type="email" id="contact-email-input" placeholder="your-email@example.com">
+                </div>
+                <div class="input-group">
+                    <label for="contact-message" id="contact-message-label">Message</label>
+                    <textarea id="contact-message" rows="4" placeholder="Your message..."></textarea>
+                </div>
+                <button class="save-btn" id="send-contact-btn">
+                    <span id="send-contact-text">Send Message</span>
+                </button>
             </div>
 
             <article class="seo-article">
@@ -189,22 +201,6 @@
                 </div>
             </article>
         </main>
-
-        <div class="contact-section">
-            <h3 id="contact-title">Contact Developer</h3>
-            <p id="contact-description">Have a question or feedback? Get in touch:</p>
-            <div class="input-group">
-                <label for="contact-email-input" id="contact-email-label-input">Your Email</label>
-                <input type="email" id="contact-email-input" placeholder="your-email@example.com">
-            </div>
-            <div class="input-group">
-                <label for="contact-message" id="contact-message-label">Message</label>
-                <textarea id="contact-message" rows="4" placeholder="Your message..."></textarea>
-            </div>
-            <button class="save-btn" id="send-contact-btn">
-                <span id="send-contact-text">Send Message</span>
-            </button>
-        </div>
 
         <footer>
             <p><a href="https://codengodiary.pages.dev/" style="color: #3498db; text-decoration: none; border-bottom: 1px solid #3498db;">Development Blog</a></p>
