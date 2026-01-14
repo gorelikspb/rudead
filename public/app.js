@@ -30,6 +30,8 @@ const translations = {
         'save-user-email-text': 'Save Email',
         'user-email-saved': 'Email saved! You can now check in from any device.',
         'user-email-error': 'Please enter a valid email address',
+        'toast-title': 'Email Saved!',
+        'toast-message': 'We\'ve saved your email and will notify you when cross-device sync is available (coming very soon!)',
         'contact-title': 'Contact Developer',
         'contact-description': 'Have a question or feedback? Get in touch:',
         'contact-email-label-input': 'Your Email',
@@ -102,6 +104,8 @@ const translations = {
         'save-user-email-text': 'Сохранить Email',
         'user-email-saved': 'Email сохранен! Теперь ты можешь отмечаться с любого устройства.',
         'user-email-error': 'Введи корректный email адрес',
+        'toast-title': 'Email сохранен!',
+        'toast-message': 'Мы сохранили твой email и уведомим, когда заработает синхронизация между устройствами (очень скоро!)',
         'contact-title': 'Связаться с разработчиком',
         'contact-description': 'Есть вопрос или отзыв? Напиши:',
         'contact-email-label-input': 'Твой Email',
@@ -174,6 +178,8 @@ const translations = {
         'save-user-email-text': 'Guardar Email',
         'user-email-saved': '¡Email guardado! Ahora puedes registrarte desde cualquier dispositivo.',
         'user-email-error': 'Por favor ingresa una dirección de email válida',
+        'toast-title': '¡Email Guardado!',
+        'toast-message': 'Hemos guardado tu email y te notificaremos cuando la sincronización entre dispositivos esté disponible (¡muy pronto!)',
         'contact-title': 'Contactar al Desarrollador',
         'contact-description': '¿Tienes una pregunta o comentario? Ponte en contacto:',
         'contact-email-label-input': 'Tu Email',
@@ -246,6 +252,8 @@ const translations = {
         'save-user-email-text': 'E-Mail speichern',
         'user-email-saved': 'E-Mail gespeichert! Du kannst dich jetzt von jedem Gerät aus eintragen.',
         'user-email-error': 'Bitte gib eine gültige E-Mail-Adresse ein',
+        'toast-title': 'E-Mail gespeichert!',
+        'toast-message': 'Wir haben deine E-Mail gespeichert und benachrichtigen dich, wenn die Gerätesynchronisation verfügbar ist (sehr bald!)',
         'contact-title': 'Entwickler kontaktieren',
         'contact-description': 'Hast du eine Frage oder Feedback? Kontaktiere uns:',
         'contact-email-label-input': 'Deine E-Mail',
@@ -318,6 +326,8 @@ const translations = {
         'save-user-email-text': 'Enregistrer l\'Email',
         'user-email-saved': 'Email enregistré! Tu peux maintenant t\'enregistrer depuis n\'importe quel appareil.',
         'user-email-error': 'Veuillez entrer une adresse email valide',
+        'toast-title': 'Email Enregistré!',
+        'toast-message': 'Nous avons enregistré votre email et vous avertirons lorsque la synchronisation multi-appareils sera disponible (très bientôt!)',
         'contact-title': 'Contacter le Développeur',
         'contact-description': 'Une question ou un commentaire? Contactez-nous:',
         'contact-email-label-input': 'Ton Email',
@@ -390,6 +400,8 @@ const translations = {
         'save-user-email-text': '保存邮箱',
         'user-email-saved': '邮箱已保存！你现在可以从任何设备签到了。',
         'user-email-error': '请输入有效的邮箱地址',
+        'toast-title': '电子邮件已保存！',
+        'toast-message': '我们已保存您的电子邮件，并在跨设备同步可用时通知您（很快！）',
         'contact-title': '联系开发者',
         'contact-description': '有问题或反馈？联系我们：',
         'contact-email-label-input': '你的邮箱',
@@ -530,8 +542,14 @@ function init() {
         localStorage.setItem('lang', currentLang);
     }
     
-    // Setup event listeners first (before loadLanguage to ensure buttons exist)
+    // Setup event listeners first (before loadLanguage to ensure dropdown exists)
     setupEventListeners();
+    
+    // Set dropdown value before loading language
+    const langDropdown = document.getElementById('lang-dropdown');
+    if (langDropdown) {
+        langDropdown.value = currentLang;
+    }
     
     // Load language and update UI
     loadLanguage(currentLang);
@@ -590,17 +608,11 @@ function loadLanguage(lang) {
     currentLang = lang;
     localStorage.setItem('lang', lang);
     
-    // Update active state for language links
-    document.querySelectorAll('[data-lang]').forEach(btn => {
-        const isActive = btn.dataset.lang === lang;
-        btn.classList.toggle('active', isActive);
-        // Update href to current path if it's a link
-        if (btn.tagName === 'A' && isActive) {
-            btn.style.pointerEvents = 'none'; // Disable link for active language
-        } else if (btn.tagName === 'A') {
-            btn.style.pointerEvents = 'auto';
-        }
-    });
+    // Update dropdown selection
+    const langDropdown = document.getElementById('lang-dropdown');
+    if (langDropdown) {
+        langDropdown.value = lang;
+    }
     
     const t = translations[lang];
     Object.keys(t).forEach(key => {
@@ -961,7 +973,8 @@ function saveUserEmail() {
             phone: 'Not provided'
         });
         
-        alert(translations[currentLang]['user-email-saved']);
+        // Show toast notification instead of alert
+        showEmailSyncToast();
         console.log('User email saved:', userEmail);
     } catch (error) {
         console.error('Error saving user email:', error);
@@ -1003,6 +1016,28 @@ function getEmailHistory() {
         console.error('Failed to get email history:', error);
         return [];
     }
+}
+
+// Show email sync toast notification
+function showEmailSyncToast() {
+    const toast = document.getElementById('email-sync-toast');
+    const toastTitle = document.getElementById('toast-title');
+    const toastMessage = document.getElementById('toast-message');
+    
+    if (!toast || !toastTitle || !toastMessage) return;
+    
+    // Update text with current language
+    const t = translations[currentLang] || translations.en;
+    toastTitle.textContent = t['toast-title'] || 'Email Saved!';
+    toastMessage.textContent = t['toast-message'] || 'We\'ve saved your email and will notify you when cross-device sync is available (coming very soon!)';
+    
+    // Show toast
+    toast.classList.add('show');
+    
+    // Hide toast after 5 seconds
+    setTimeout(() => {
+        toast.classList.remove('show');
+    }, 5000);
 }
 
 // Send contact message to developer
@@ -1187,15 +1222,11 @@ function scheduleNotification() {
 
 // Setup event listeners
 function setupEventListeners() {
-    // Language switcher - remove old listeners first to avoid duplicates
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-        // Clone node to remove all event listeners
-        const newBtn = btn.cloneNode(true);
-        btn.parentNode.replaceChild(newBtn, btn);
-        
-        newBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            const lang = newBtn.dataset.lang;
+    // Language dropdown
+    const langDropdown = document.getElementById('lang-dropdown');
+    if (langDropdown) {
+        langDropdown.addEventListener('change', (e) => {
+            const lang = e.target.value;
             if (lang && ['en', 'ru', 'es', 'de', 'fr', 'zh'].includes(lang)) {
                 loadLanguage(lang);
                 // Update URL without reload
@@ -1210,7 +1241,7 @@ function setupEventListeners() {
                 window.history.pushState({}, '', url);
             }
         });
-    });
+    }
     
     // Check-in button
     document.getElementById('checkin-btn').addEventListener('click', checkIn);

@@ -33,7 +33,54 @@ header {
     text-align: center;
     color: white;
     margin-bottom: 30px;
+    margin-top: 10px;
     position: relative;
+}
+
+.lang-dropdown-wrapper {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 1000;
+}
+
+.lang-dropdown {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1.5px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 5px 22px 5px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.75em;
+    font-weight: 500;
+    transition: all 0.3s;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 12 12'%3E%3Cpath fill='white' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 6px center;
+    background-size: 10px;
+    min-width: 50px;
+    width: auto;
+    height: 32px;
+    line-height: 1.2;
+}
+
+.lang-dropdown:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: scale(1.05);
+}
+
+.lang-dropdown:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+}
+
+.lang-dropdown option {
+    background: var(--card-bg);
+    color: white;
+    padding: 10px;
 }
 
 .floating-share-btn {
@@ -79,35 +126,7 @@ header p {
     font-size: 1.1em;
 }
 
-.lang-switcher {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 15px;
-}
-
-.lang-btn,
-.lang-btn:link,
-.lang-btn:visited {
-    background: rgba(255,255,255,0.2);
-    border: 2px solid rgba(255,255,255,0.3);
-    color: white;
-    padding: 5px 15px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 0.9em;
-    transition: all 0.3s;
-}
-
-.lang-btn:hover {
-    background: rgba(255,255,255,0.3);
-}
-
-.lang-btn.active {
-    background: white;
-    color: #667eea;
-    border-color: white;
-}
+/* Old lang-switcher styles removed - now using dropdown */
 
 main {
     display: flex;
@@ -742,6 +761,64 @@ footer a:hover {
     font-size: 0.95em;
 }
 
+/* Toast Notification */
+.toast-notification {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: rgba(42, 42, 42, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 16px 20px;
+    max-width: 400px;
+    width: calc(100% - 40px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    z-index: 10000;
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    pointer-events: none;
+}
+
+.toast-notification.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+    pointer-events: auto;
+}
+
+.toast-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.toast-icon {
+    font-size: 1.5em;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.toast-text {
+    flex: 1;
+}
+
+.toast-text strong {
+    display: block;
+    color: var(--text-color);
+    font-size: 0.95em;
+    margin-bottom: 4px;
+    font-weight: 600;
+}
+
+.toast-text p {
+    color: var(--text-light);
+    font-size: 0.85em;
+    margin: 0;
+    line-height: 1.4;
+    opacity: 0.9;
+}
+
 @media (max-width: 600px) {
     h1 {
         font-size: 2em;
@@ -771,6 +848,11 @@ footer a:hover {
     .modal-content {
         padding: 20px;
         max-height: 95vh;
+    }
+    
+    .toast-notification {
+        max-width: calc(100% - 40px);
+        padding: 14px 18px;
     }
 }
 
