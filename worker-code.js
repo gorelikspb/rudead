@@ -256,14 +256,102 @@ export default {
           });
         }
         
+        // User notification - send email to user about updates/features
+        if (data.type === 'user_notification') {
+          const notificationHtml = `
+            <h2>📢 Update from Are You Dead? App</h2>
+            <p><strong>${data.subject || 'App Update'}</strong></p>
+            <div style="background: #f5f5f5; padding: 15px; border-radius: 5px; margin: 20px 0; color: #333;">
+              ${data.message || 'New features and updates are available!'}
+            </div>
+            <p><a href="https://areyoudeadapp.pages.dev" style="background: #667eea; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block;">Open App</a></p>
+            <hr>
+            <p style="color: #666; font-size: 12px;">
+              You're receiving this because you signed up for email notifications.<br>
+              <a href="https://areyoudeadapp.pages.dev">Are You Dead? App</a>
+            </p>
+          `;
+          
+          try {
+            const notificationResponse = await fetch('https://api.resend.com/emails', {
+              method: 'POST',
+              headers: {
+                'Authorization': `Bearer ${env.RESEND_API_KEY}`,
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                from: 'Are You Dead? <onboarding@resend.dev>',
+                to: data.email,
+                reply_to: env.ADMIN_EMAIL,
+                subject: data.subject || 'Are You Dead? App - Update',
+                html: notificationHtml
+              })
+            });
+            
+            const notificationResult = await notificationResponse.json();
+            
+            if (!notificationResponse.ok) {
+              console.error('Failed to send user notification:', notificationResult);
+              return new Response(JSON.stringify({ 
+                success: false, 
+                error: 'Failed to send notification',
+                details: notificationResult 
+              }), {
+                status: 500,
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Access-Control-Allow-Origin': '*'
+                }
+              });
+            }
+            
+            // Also log to admin
+            await fetch('https://api.resend.com/emails', {
+              method: 'POST',
+              headers: {
+                'Authorization': `Bearer ${env.RESEND_API_KEY}`,
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                from: 'Are You Dead? <onboarding@resend.dev>',
+                to: env.ADMIN_EMAIL,
+                reply_to: env.ADMIN_EMAIL,
+                subject: `📧 User Notification Sent: ${data.email}`,
+                html: `<p>Notification sent to user: ${data.email}</p><p>Subject: ${data.subject || 'App Update'}</p>`
+              })
+            });
+            
+            return new Response(JSON.stringify({ success: true, sent: true }), {
+              headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+              }
+            });
+          } catch (notificationError) {
+            console.error('Error sending user notification:', notificationError);
+            return new Response(JSON.stringify({ 
+              success: false, 
+              error: 'Error sending notification',
+              details: notificationError.message 
+            }), {
+              status: 500,
+              headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+              }
+            });
+          }
+        }
+        
         // Log email addresses to admin
-        if (data.type === 'log_email') {
+        if (data.type === 'log_email' || data.type === 'version_check') {
           const emailTypeLabels = {
             'contact': 'Emergency Contact',
             'test': 'Test Email',
             'emergency': 'Emergency Notification',
             'user': 'User Email (for sync)',
-            'contact_dev': 'Contact Developer'
+            'contact_dev': 'Contact Developer',
+            'version_check': 'Version Check'
           };
           const emailTypeLabel = emailTypeLabels[data.email_type] || data.email_type;
           

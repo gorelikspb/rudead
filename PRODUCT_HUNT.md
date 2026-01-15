@@ -7,23 +7,23 @@
 Safety check-in app for people living alone
 
 ## Description (500 characters max)
-A safety companion for people living alone. Check in every 2 days by pressing a button. If you don't, your emergency contact gets notified automatically. Perfect for office workers living solo, students away from home, introverts, people with depression, or anyone choosing a solitary lifestyle. Inspired by viral Chinese app Sileme. Completely free, no subscriptions, all data stays private on your device.
+A safety companion for people living alone. Check in every 2 days by pressing a button. If you don't, your emergency contact gets notified automatically. Perfect for office workers living solo, students away from home, introverts, people with depression, or anyone choosing a solitary lifestyle. Free alternative to viral Chinese app Sileme (Ты умер? / Are You Dead?) - completely free, no registration required, available in 6 languages. All data stays private on your device.
 
 ## Maker Comment (First Comment)
 Hey Product Hunt! 👋
 
-I built this app after seeing the viral Chinese app Sileme (Ты умер?) and realizing how many people live alone and worry about what happens if they can't call for help.
+I built this app after seeing the viral Chinese app Sileme (Ты умер? / Are You Dead?) and realizing how many people live alone and worry about what happens if they can't call for help. The Chinese app solves this problem, but requires installation and a paid subscription. So I made a free alternative with these advantages: completely free, no registration required, and available in 6 languages (not just Chinese). 😅
 
 **The Problem:** People living alone can experience emergencies with no one around to notice. This is especially scary for office workers, students, introverts, and anyone choosing a solitary lifestyle.
 
 **The Solution:** A simple check-in every 2 days. One button press confirms you're alive. If you don't check in, your emergency contact gets notified automatically.
 
 **Why I Built This:**
-- Completely free (no subscriptions, no hidden fees)
+- Completely free (no subscriptions, no hidden fees, no registration) - try it before it's too late! 😅
 - Privacy-first (all data stored locally on your device)
-- Available in 6 languages (EN, ES, DE, FR, RU, ZH)
+- Available in 6 languages (EN, ES, DE, FR, RU, ZH) - truly multilingual
 - Works as a PWA (no app store needed)
-- Inspired by a real need I saw in the community
+- Includes funny punchlines for sharing (if you have someone to share with 😅)
 
 **What's Next:**
 - Cross-device sync (coming very soon!)
@@ -73,7 +73,8 @@ https://areyoudeadapp.pages.dev
 - Respond to feedback quickly
 
 ## Additional Notes
-- The app is inspired by the viral Chinese app Sileme (Ты умер?)
+- Free alternative to viral Chinese app Sileme (Ты умер? / Are You Dead?)
+- Advantages over original: completely free, no registration, multilingual (6 languages vs Chinese only)
 - It addresses a real safety concern for millions of people living alone
 - The provocative name helps raise awareness about the issue
 - All data is stored locally - no server-side tracking

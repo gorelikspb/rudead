@@ -67,4 +67,10 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://areyoudeadapp.pages.dev/?lang=fr"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://areyoudeadapp.pages.dev/?lang=ru"/>
   </url>
+  <url>
+    <loc>https://areyoudeadapp.pages.dev/download</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>

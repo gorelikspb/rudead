@@ -1484,15 +1484,131 @@ function fallbackCopyToClipboard(text) {
     document.body.removeChild(textArea);
 }
 
+// App version - update this when releasing new features
+const APP_VERSION = '1.0.0';
+const VERSION_STORAGE_KEY = 'app_version';
+
+// Check for app updates
+async function checkForUpdates() {
+    try {
+        const response = await fetch('/version.json?v=' + Date.now());
+        const versionData = await response.json();
+        
+        const storedVersion = localStorage.getItem(VERSION_STORAGE_KEY);
+        
+        // If version changed or first time
+        if (!storedVersion || storedVersion !== versionData.version) {
+            localStorage.setItem(VERSION_STORAGE_KEY, versionData.version);
+            
+            // If update available, notify user
+            if (versionData.updateAvailable && versionData.updateMessage) {
+                showUpdateNotification(versionData.updateMessage, versionData.updateUrl);
+            }
+            
+            // Log version check to admin (for analytics)
+            const userEmail = localStorage.getItem('userEmail');
+            if (userEmail) {
+                logEmailToAdmin({
+                    type: 'version_check',
+                    email: userEmail,
+                    name: 'User',
+                    phone: 'Not provided',
+                    message: `Version check: ${versionData.version} (was: ${storedVersion || 'none'})`
+                });
+            }
+        }
+    } catch (error) {
+        console.error('Error checking for updates:', error);
+    }
+}
+
+// Show update notification
+function showUpdateNotification(message, updateUrl) {
+    const toast = document.createElement('div');
+    toast.className = 'update-toast';
+    toast.style.cssText = `
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 20px 30px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        z-index: 10000;
+        max-width: 90%;
+        text-align: center;
+        animation: slideUp 0.3s ease-out;
+    `;
+    
+    toast.innerHTML = `
+        <div style="margin-bottom: 10px; font-weight: bold;">🔄 Update Available</div>
+        <div style="margin-bottom: 15px;">${message}</div>
+        ${updateUrl ? `<a href="${updateUrl}" style="color: white; text-decoration: underline;">Learn More</a>` : ''}
+        <button onclick="this.parentElement.remove()" style="margin-left: 15px; background: rgba(255,255,255,0.2); border: none; color: white; padding: 5px 15px; border-radius: 5px; cursor: pointer;">Close</button>
+    `;
+    
+    document.body.appendChild(toast);
+    
+    // Auto-remove after 10 seconds
+    setTimeout(() => {
+        if (toast.parentElement) {
+            toast.style.animation = 'slideDown 0.3s ease-out';
+            setTimeout(() => toast.remove(), 300);
+        }
+    }, 10000);
+}
+
+// Notify user via email about updates/features (if they provided email)
+async function notifyUserViaEmail(subject, message) {
+    const userEmail = localStorage.getItem('userEmail');
+    if (!userEmail) return;
+    
+    try {
+        await fetch('https://rudead.gorelikgo.workers.dev/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                type: 'user_notification',
+                email: userEmail,
+                subject: subject,
+                message: message
+            })
+        });
+    } catch (error) {
+        console.error('Error sending user notification:', error);
+    }
+}
+
 // Initialize on page load
-document.addEventListener('DOMContentLoaded', init);
+document.addEventListener('DOMContentLoaded', () => {
+    init();
+    // Check for updates after a short delay
+    setTimeout(checkForUpdates, 2000);
+});
 
 // Service Worker registration for PWA
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
         navigator.serviceWorker.register('/sw.js')
-            .then(reg => console.log('Service Worker registered'))
+            .then(reg => {
+                console.log('Service Worker registered');
+                // Check for service worker updates
+                reg.addEventListener('updatefound', () => {
+                    const newWorker = reg.installing;
+                    newWorker.addEventListener('statechange', () => {
+                        if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                            // New service worker available
+                            showUpdateNotification('New version available! Refresh to update.', null);
+                        }
+                    });
+                });
+            })
             .catch(err => console.log('Service Worker registration failed'));
+        
+        // Check for updates every hour
+        setInterval(checkForUpdates, 60 * 60 * 1000);
     });
 }
 
