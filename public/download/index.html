@@ -56,6 +56,9 @@
             color: #ccc;
             line-height: 1.8;
         }
+        #pwa-instructions {
+            scroll-margin-top: 100px;
+        }
         .install-step strong {
             color: #fff;
         }
@@ -112,7 +115,7 @@
                 <a href="/are-you-dead-app.apk" class="download-btn" id="apk-btn" download style="background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);">
                     📱 Download APK (Android)
                 </a>
-                <a href="/" class="download-btn" id="install-btn" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                <a href="#pwa-instructions" class="download-btn" id="install-btn" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
                     🌐 Install PWA
                 </a>
             </div>
@@ -134,7 +137,7 @@
                     <em style="color: #999;">Note: APK uses TWA technology - it automatically updates when we update the website.</em>
                 </div>
                 
-                <div class="install-step">
+                <div class="install-step" id="pwa-instructions">
                     <strong>🌐 Option 2: Install PWA (All Devices)</strong><br>
                     <strong>🤖 Android (Chrome):</strong> Tap menu (3 dots) → "Add to Home Screen"<br>
                     <strong>🍎 iPhone/iPad (Safari):</strong> Tap Share → "Add to Home Screen"<br>
