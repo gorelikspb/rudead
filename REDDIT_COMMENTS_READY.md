@@ -1,6 +1,53 @@
 # Готовые комментарии для Reddit постов
 
-## Пост 1: "what's your $2 dinner that actually tastes like a $20 meal?"
+## Новые комментарии (обновлено)
+
+### Пост: "How did the stereotype that women are more emotional than men originate, and how accurate is it today?"
+**Upvotes:** 1 | **Комментарии:** 0 | **Время:** 2 мин назад
+**Статус:** ✅ ИДЕАЛЬНЫЙ для комментирования (ранний, нет комментариев)
+
+#### Вариант 1 (простой):
+"Honestly, I think it's more about how emotions are expressed, not felt. Men are taught to suppress emotions, women are allowed to show them. But everyone feels things deeply - we just handle it differently. 🤔"
+
+#### Вариант 2 (с юмором):
+"I think men are just as emotional, we just express it differently. Road rage? That's emotion. Getting upset about sports? Emotion. We just call it 'passion' instead 😅"
+
+#### Вариант 3 (с примером):
+"I think it's a cultural thing. In some cultures, men are very expressive. The stereotype probably comes from how we're socialized, not biology. Everyone feels emotions - we're just taught different ways to handle them. 💭"
+
+---
+
+### Пост: "What's something that seems simple but is actually really important?"
+**Upvotes:** 50-200 | **Комментарии:** 10-50 | **Время:** 1-4 часа назад
+**Статус:** ✅ ХОРОШИЙ для комментирования
+
+#### Вариант 1 (простой):
+"Regular check-ins with people who live alone. Sounds simple, but if someone has an emergency and no one checks on them, it can be days before anyone knows. A simple 'you okay?' text can literally save a life. 📱"
+
+#### Вариант 2 (с личным опытом):
+"I live alone and realized how important it is to have someone who checks on you regularly. If I had an emergency, who would know? It's a simple thing but really matters for safety. 🏠"
+
+#### Вариант 3 (короткий):
+"Having someone who knows if you're okay when you live alone. Simple concept, but can be life-saving if something happens. ⚠️"
+
+---
+
+### Пост: "What's a problem you didn't know existed until you experienced it?"
+**Upvotes:** 30-150 | **Комментарии:** 5-30 | **Время:** 1-3 часа назад
+**Статус:** ✅ ХОРОШИЙ для комментирования
+
+#### Вариант 1 (простой):
+"The fear of dying alone unnoticed. Sounds dark, but when you live alone, you realize - if something happens, who would know? It's a real concern for millions of people. 😟"
+
+#### Вариант 2 (с юмором):
+"Realizing that if I had an emergency at home, no one would know for days. My neighbors don't check on me, my family lives far away. It's like 'well, this is awkward' 😅"
+
+#### Вариант 3 (с решением):
+"The isolation risk when living alone. If something happens, who checks on you? I had to set up a system with friends to check in regularly. It's a real problem people don't talk about. 📞"
+
+---
+
+### Пост: "What's your $2 dinner that actually tastes like a $20 meal?"
 **Upvotes:** 1 | **Комментарии:** 2 | **Время:** 3 мин назад
 **Статус:** ✅ ИДЕАЛЬНЫЙ для комментирования (ранний, мало комментариев)
 
@@ -86,18 +133,18 @@
 - Используй **Вариант 2** для поста 5 (с упоминанием проблемы безопасности)
 
 ### Когда комментировать:
-- **Пост 1:** ✅ Комментируй СЕЙЧАС (3 мин назад, только 2 комментария)
-- **Пост 2:** ✅ Комментируй (4 мин назад, активное обсуждение)
-- **Пост 3:** ✅ Комментируй (6 мин назад, мало комментариев)
-- **Пост 4:** ✅ Комментируй (7 мин назад, можно выделиться)
-- **Пост 5:** ⚠️ Можно комментировать, но уже 8 мин назад
+- **Новые посты:** ✅ Комментируй СЕЙЧАС (1-5 мин назад, 0-5 комментариев)
+- **Ранние посты:** ✅ Комментируй (1-4 часа назад, 10-50 комментариев)
+- **Популярные посты:** ⚠️ Можно комментировать, если есть уникальный ответ (4-6 часов назад, 50-200 комментариев)
 
 ### Рекомендации:
-1. **Начни с Поста 1** - самый свежий, меньше всего комментариев
-2. **Используй Вариант 1** для каждого поста (без упоминания приложения)
+1. **Начни с самых свежих постов** - 0-5 комментариев, опубликованных 1-5 минут назад
+2. **Используй Вариант 1** для начала (простой, естественный)
 3. **Пиши просто** - 2-3 коротких предложения достаточно
 4. **Будь естественным** - не копируй слово в слово, адаптируй под свой стиль
-5. **Проверь через час** - сколько upvotes получили комментарии?
+5. **Добавь 1-2 эмодзи** - делает комментарий более живым
+6. **Проверь через час** - сколько upvotes получили комментарии?
+7. **Не комментируй все сразу** - максимум 2-3 комментария в день
 
 ---
 
