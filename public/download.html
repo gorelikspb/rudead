@@ -108,35 +108,39 @@
             <h1 class="download-title">Download Are You Dead? App</h1>
             <p class="download-subtitle">Free Safety Check-in App - No APK Required</p>
             
-            <a href="/" class="download-btn" id="install-btn">Install Now (Free)</a>
+            <a href="/" class="download-btn" id="install-btn">Open App</a>
             
             <div class="note-box">
                 <strong>No APK Download Needed!</strong> This is a Progressive Web App (PWA) that installs directly from your browser. Works on Android, iOS, and desktop.
             </div>
             
             <div class="install-instructions">
-                <h3>How to Install:</h3>
+                <h3>📱 How to Install:</h3>
                 
                 <div class="install-step">
-                    <strong>For Android (Chrome):</strong><br>
-                    1. Click "Install Now" button above<br>
-                    2. When prompted, tap "Add to Home Screen"<br>
-                    3. The app will be installed on your device
+                    <strong>🤖 For Android (Chrome):</strong><br>
+                    1. Click "Open App" button above<br>
+                    2. Tap the <strong>menu button (3 dots)</strong> in the top-right corner<br>
+                    3. Select <strong>"Add to Home Screen"</strong> or <strong>"Install app"</strong><br>
+                    4. Tap <strong>"Add"</strong> or <strong>"Install"</strong> to confirm<br>
+                    5. The app icon will appear on your home screen
                 </div>
                 
                 <div class="install-step">
-                    <strong>For iPhone/iPad (Safari):</strong><br>
-                    1. Click "Install Now" button above<br>
-                    2. Tap the Share button (square with arrow)<br>
-                    3. Select "Add to Home Screen"<br>
-                    4. Tap "Add" to install
+                    <strong>🍎 For iPhone/iPad (Safari):</strong><br>
+                    1. Click "Open App" button above<br>
+                    2. Tap the <strong>Share button</strong> (square with arrow up) at the bottom<br>
+                    3. Scroll down and select <strong>"Add to Home Screen"</strong><br>
+                    4. Tap <strong>"Add"</strong> in the top-right corner<br>
+                    5. The app icon will appear on your home screen
                 </div>
                 
                 <div class="install-step">
-                    <strong>For Desktop (Chrome/Edge):</strong><br>
-                    1. Click "Install Now" button above<br>
-                    2. Click the install icon in the address bar<br>
-                    3. The app will open in its own window
+                    <strong>💻 For Desktop (Chrome/Edge):</strong><br>
+                    1. Click "Open App" button above<br>
+                    2. Look for the <strong>install icon</strong> (➕ or ⬇️) in the address bar<br>
+                    3. Click it and select <strong>"Install"</strong><br>
+                    4. The app will open in its own window
                 </div>
             </div>
             
@@ -173,69 +177,13 @@
     </div>
     
     <script>
-        // PWA Install Logic
-        let deferredPrompt;
-        let isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-        let isAndroid = /Android/.test(navigator.userAgent);
+        // Simple redirect to main app
         const installBtn = document.getElementById('install-btn');
         
         // Check if already installed
         if (window.matchMedia('(display-mode: standalone)').matches) {
-            installBtn.textContent = '✓ Already Installed';
-            installBtn.style.opacity = '0.6';
-            installBtn.onclick = function(e) {
-                e.preventDefault();
-                window.location.href = '/';
-            };
+            installBtn.textContent = '✓ Already Installed - Open App';
         }
-        
-        // Android Chrome - beforeinstallprompt event
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-            installBtn.textContent = 'Install Now (Tap to Install)';
-            installBtn.style.display = 'inline-block';
-        });
-        
-        // Install button click handler
-        installBtn.addEventListener('click', async function(e) {
-            e.preventDefault();
-            
-            // If we have deferredPrompt (Android Chrome)
-            if (deferredPrompt) {
-                try {
-                    deferredPrompt.prompt();
-                    const { outcome } = await deferredPrompt.userChoice;
-                    console.log(`User response: ${outcome}`);
-                    if (outcome === 'accepted') {
-                        installBtn.textContent = 'Installing...';
-                        setTimeout(() => {
-                            installBtn.textContent = 'Installed! Opening app...';
-                            window.location.href = '/';
-                        }, 1000);
-                    }
-                    deferredPrompt = null;
-                } catch (err) {
-                    console.error('Install prompt error:', err);
-                    // Fallback: redirect to main page
-                    window.location.href = '/';
-                }
-            } else {
-                // No prompt available - redirect to main page with instructions
-                window.location.href = '/';
-            }
-        });
-        
-        // If prompt doesn't appear after 2 seconds, show manual instructions
-        setTimeout(() => {
-            if (!deferredPrompt && !window.matchMedia('(display-mode: standalone)').matches) {
-                if (isIOS) {
-                    installBtn.textContent = 'Open App & Use Safari Menu';
-                } else if (isAndroid) {
-                    installBtn.textContent = 'Open App & Use Browser Menu';
-                }
-            }
-        }, 2000);
         
         // Register Service Worker for PWA functionality
         if ('serviceWorker' in navigator) {
