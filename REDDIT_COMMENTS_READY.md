@@ -2,7 +2,52 @@
 
 ## Новые комментарии (обновлено)
 
-### Пост: "How did the stereotype that women are more emotional than men originate, and how accurate is it today?"
+### Пост 1: "What's the nicest compliment you have received?"
+**Upvotes:** 1 | **Комментарии:** 0 | **Время:** 2 мин назад
+**Статус:** ✅ ИДЕАЛЬНЫЙ для комментирования (ранний, нет комментариев)
+
+#### Вариант 1 (простой):
+"Someone told me I make them feel safe and heard. That meant more than any physical compliment. It's the kind of thing that stays with you. 💙"
+
+#### Вариант 2 (с юмором):
+"A friend said I have a calming presence. I was like 'really? I'm usually stressed' 😅 But it made me realize how we see ourselves vs how others see us. 🌟"
+
+#### Вариант 3 (с примером):
+"Someone once said I'm reliable - that if they needed help, they'd call me. That hit different. It's not about being perfect, just being there when it matters. 🤝"
+
+---
+
+### Пост 2: "What's something that happened to you during or after meditation that you didn't expect, and how did it change the way you think about it?"
+**Upvotes:** 1 | **Комментарии:** 0 | **Время:** 2 мин назад
+**Статус:** ✅ ИДЕАЛЬНЫЙ для комментирования (ранний, нет комментариев)
+
+#### Вариант 1 (простой):
+"I realized how much I worry about things that haven't happened yet. Meditation showed me I'm often anxious about the future instead of being present. Changed how I handle stress. 🧘"
+
+#### Вариант 2 (с юмором):
+"I fell asleep. Not what I expected 😅 But it made me realize I was exhausted and needed rest more than anything. Sometimes meditation shows you what you really need. 💤"
+
+#### Вариант 3 (с личным опытом):
+"I noticed how much noise is in my head - constant thoughts, worries, plans. Meditation helped me see that most of it doesn't matter. Now I'm better at letting things go. 🌊"
+
+---
+
+### Пост 3: "Have you ever bought an online freelancing guide, and what made it worth (or not worth) the money?"
+**Upvotes:** 0 | **Комментарии:** 0 | **Время:** 2 мин назад
+**Статус:** ✅ ХОРОШИЙ для комментирования (ранний, нет комментариев)
+
+#### Вариант 1 (простой):
+"Bought one for $50. Half of it was stuff I could find free online, but the other half had real client templates and pricing strategies that saved me time. Worth it for the templates alone. 💼"
+
+#### Вариант 2 (с юмором):
+"Spent $30 on a 'freelancing success' guide. It basically said 'work hard and network.' I could have saved that money 😅 But at least it motivated me to actually start. 📚"
+
+#### Вариант 3 (с советом):
+"Most guides are overpriced. The free content on YouTube and Reddit is usually better. But if a guide has specific templates or contracts you need, that can be worth it. Research first! 🔍"
+
+---
+
+### Пост 4: "How did the stereotype that women are more emotional than men originate, and how accurate is it today?"
 **Upvotes:** 1 | **Комментарии:** 0 | **Время:** 2 мин назад
 **Статус:** ✅ ИДЕАЛЬНЫЙ для комментирования (ранний, нет комментариев)
 
