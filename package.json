@@ -1,5 +1,11 @@
 {
+  "scripts": {
+    "screenshots": "node scripts/capture-screenshots.js"
+  },
   "dependencies": {
     "canvas": "^3.2.1"
+  },
+  "devDependencies": {
+    "puppeteer": "^21.0.0"
   }
 }
