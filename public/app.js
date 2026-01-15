@@ -1581,10 +1581,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Service Worker registration for PWA
 if ('serviceWorker' in navigator) {
+    // Register immediately on page load (for PWA Builder compatibility)
     window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
+        navigator.serviceWorker.register('/sw.js', { scope: '/' })
             .then(reg => {
-                console.log('Service Worker registered');
+                console.log('Service Worker registered successfully', reg);
                 // Check for service worker updates
                 reg.addEventListener('updatefound', () => {
                     const newWorker = reg.installing;
@@ -1596,10 +1597,23 @@ if ('serviceWorker' in navigator) {
                     });
                 });
             })
-            .catch(err => console.log('Service Worker registration failed'));
+            .catch(err => {
+                console.error('Service Worker registration failed:', err);
+            });
         
         // Check for updates every hour
         setInterval(checkForUpdates, 60 * 60 * 1000);
     });
+    
+    // Also try to register on DOMContentLoaded (for faster registration)
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js', { scope: '/' })
+                    .then(reg => console.log('Service Worker pre-registered', reg))
+                    .catch(err => console.log('Service Worker pre-registration failed:', err));
+            }
+        });
+    }
 }
 
