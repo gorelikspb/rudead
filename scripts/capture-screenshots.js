@@ -110,7 +110,36 @@ async function captureScreenshots() {
                 }
                 
                 await page.goto(fileUrl, { waitUntil: 'networkidle0', timeout: 30000 });
-                await new Promise(resolve => setTimeout(resolve, screenshot.waitAfter));
+                
+                // Ждем загрузки всех стилей и ресурсов
+                await page.evaluate(() => {
+                    return new Promise((resolve) => {
+                        if (document.readyState === 'complete') {
+                            resolve();
+                        } else {
+                            window.addEventListener('load', resolve);
+                        }
+                    });
+                });
+                
+                // Дополнительная задержка для загрузки CSS и применения стилей
+                await new Promise(resolve => setTimeout(resolve, screenshot.waitAfter + 2000));
+                
+                // Проверяем, что стили загружены (проверяем наличие computed styles у body)
+                const stylesLoaded = await page.evaluate(() => {
+                    const body = document.body;
+                    const computedStyle = window.getComputedStyle(body);
+                    // Проверяем, что стили применены (background не прозрачный или есть другие стили)
+                    const hasStyles = computedStyle.fontFamily !== '' || 
+                                     computedStyle.backgroundColor !== 'rgba(0, 0, 0, 0)' ||
+                                     computedStyle.color !== '';
+                    return hasStyles;
+                });
+                
+                if (!stylesLoaded) {
+                    console.warn('⚠️  Стили могут быть не загружены, ждем еще...');
+                    await new Promise(resolve => setTimeout(resolve, 2000));
+                }
                 
                 const outputPath = path.join(SCREENSHOTS_DIR, lang, screenshot.file);
                 
@@ -143,7 +172,36 @@ async function captureScreenshots() {
                 }
                 
                 await page.goto(fileUrl, { waitUntil: 'networkidle0', timeout: 30000 });
-                await new Promise(resolve => setTimeout(resolve, screenshot.waitAfter));
+                
+                // Ждем загрузки всех стилей и ресурсов
+                await page.evaluate(() => {
+                    return new Promise((resolve) => {
+                        if (document.readyState === 'complete') {
+                            resolve();
+                        } else {
+                            window.addEventListener('load', resolve);
+                        }
+                    });
+                });
+                
+                // Дополнительная задержка для загрузки CSS и применения стилей
+                await new Promise(resolve => setTimeout(resolve, screenshot.waitAfter + 2000));
+                
+                // Проверяем, что стили загружены (проверяем наличие computed styles у body)
+                const stylesLoaded = await page.evaluate(() => {
+                    const body = document.body;
+                    const computedStyle = window.getComputedStyle(body);
+                    // Проверяем, что стили применены (background не прозрачный или есть другие стили)
+                    const hasStyles = computedStyle.fontFamily !== '' || 
+                                     computedStyle.backgroundColor !== 'rgba(0, 0, 0, 0)' ||
+                                     computedStyle.color !== '';
+                    return hasStyles;
+                });
+                
+                if (!stylesLoaded) {
+                    console.warn('⚠️  Стили могут быть не загружены, ждем еще...');
+                    await new Promise(resolve => setTimeout(resolve, 2000));
+                }
                 
                 const outputPath = path.join(SCREENSHOTS_DIR, lang, screenshot.file);
                 
