@@ -178,10 +178,32 @@
     </div>
     
     <script>
-        // Simple redirect to main app
-        const installBtn = document.getElementById('install-btn');
+        // Check if APK file exists
+        const apkBtn = document.getElementById('apk-btn');
+        fetch('/are-you-dead-app.apk', { method: 'HEAD' })
+            .then(response => {
+                if (!response.ok) {
+                    apkBtn.style.opacity = '0.5';
+                    apkBtn.style.cursor = 'not-allowed';
+                    apkBtn.onclick = function(e) {
+                        e.preventDefault();
+                        alert('APK file is being prepared. Please use PWA installation for now, or check back later.');
+                    };
+                    apkBtn.textContent = '📱 APK Coming Soon';
+                }
+            })
+            .catch(() => {
+                apkBtn.style.opacity = '0.5';
+                apkBtn.style.cursor = 'not-allowed';
+                apkBtn.onclick = function(e) {
+                    e.preventDefault();
+                    alert('APK file is being prepared. Please use PWA installation for now, or check back later.');
+                };
+                apkBtn.textContent = '📱 APK Coming Soon';
+            });
         
         // Check if already installed
+        const installBtn = document.getElementById('install-btn');
         if (window.matchMedia('(display-mode: standalone)').matches) {
             installBtn.textContent = '✓ Already Installed - Open App';
         }
