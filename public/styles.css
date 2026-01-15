@@ -85,10 +85,10 @@ header {
 
 .download-link-top {
     position: fixed;
-    top: 20px;
-    right: 90px;
-    width: 40px;
-    height: 40px;
+    top: 90px; /* Под кнопкой Share (20px + 56px высота + 14px отступ) */
+    right: 20px; /* Та же позиция по правому краю */
+    width: 56px; /* Та же ширина как у Share */
+    height: 56px; /* Та же высота как у Share */
     border-radius: 50%;
     background: rgba(102, 126, 234, 0.15);
     border: 1.5px solid rgba(102, 126, 234, 0.3);
@@ -892,6 +892,13 @@ footer a:hover {
     .floating-share-btn svg {
         width: 24px;
         height: 24px;
+    }
+    
+    .download-link-top {
+        top: 75px; /* Под кнопкой Share на мобильных (15px + 48px высота + 12px отступ) */
+        right: 15px; /* Та же позиция по правому краю */
+        width: 48px; /* Та же ширина как у Share на мобильных */
+        height: 48px; /* Та же высота как у Share на мобильных */
     }
     
     .modal-content {
