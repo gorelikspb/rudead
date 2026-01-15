@@ -106,41 +106,39 @@
     <div class="container">
         <div class="download-container">
             <h1 class="download-title">Download Are You Dead? App</h1>
-            <p class="download-subtitle">Free Safety Check-in App - No APK Required</p>
+            <p class="download-subtitle">Free Safety Check-in App</p>
             
-            <a href="/" class="download-btn" id="install-btn">Open App</a>
+            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin: 30px 0;">
+                <a href="/are-you-dead-app.apk" class="download-btn" id="apk-btn" download style="background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);">
+                    📱 Download APK (Android)
+                </a>
+                <a href="/" class="download-btn" id="install-btn" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                    🌐 Install PWA
+                </a>
+            </div>
             
-            <div class="note-box">
-                <strong>No APK Download Needed!</strong> This is a Progressive Web App (PWA) that installs directly from your browser. Works on Android, iOS, and desktop.
+            <div class="note-box" style="background: rgba(76, 175, 80, 0.1); border-left-color: #4CAF50; color: #4CAF50;">
+                <strong>✨ APK Auto-Updates!</strong> The APK uses TWA (Trusted Web Activity) technology - it automatically updates when you update the website. No need to reinstall!
             </div>
             
             <div class="install-instructions">
-                <h3>📱 How to Install:</h3>
+                <h3>📱 Installation Options:</h3>
                 
                 <div class="install-step">
-                    <strong>🤖 For Android (Chrome):</strong><br>
-                    1. Click "Open App" button above<br>
-                    2. Tap the <strong>menu button (3 dots)</strong> in the top-right corner<br>
-                    3. Select <strong>"Add to Home Screen"</strong> or <strong>"Install app"</strong><br>
-                    4. Tap <strong>"Add"</strong> or <strong>"Install"</strong> to confirm<br>
-                    5. The app icon will appear on your home screen
+                    <strong>📦 Option 1: Download APK (Android)</strong><br>
+                    1. Click "Download APK" button above<br>
+                    2. Open Settings → Security → Enable "Install from Unknown Sources"<br>
+                    3. Open the downloaded APK file<br>
+                    4. Tap "Install"<br>
+                    5. The app will install and auto-update from the website!<br>
+                    <em style="color: #999;">Note: APK uses TWA technology - it automatically updates when we update the website.</em>
                 </div>
                 
                 <div class="install-step">
-                    <strong>🍎 For iPhone/iPad (Safari):</strong><br>
-                    1. Click "Open App" button above<br>
-                    2. Tap the <strong>Share button</strong> (square with arrow up) at the bottom<br>
-                    3. Scroll down and select <strong>"Add to Home Screen"</strong><br>
-                    4. Tap <strong>"Add"</strong> in the top-right corner<br>
-                    5. The app icon will appear on your home screen
-                </div>
-                
-                <div class="install-step">
-                    <strong>💻 For Desktop (Chrome/Edge):</strong><br>
-                    1. Click "Open App" button above<br>
-                    2. Look for the <strong>install icon</strong> (➕ or ⬇️) in the address bar<br>
-                    3. Click it and select <strong>"Install"</strong><br>
-                    4. The app will open in its own window
+                    <strong>🌐 Option 2: Install PWA (All Devices)</strong><br>
+                    <strong>🤖 Android (Chrome):</strong> Tap menu (3 dots) → "Add to Home Screen"<br>
+                    <strong>🍎 iPhone/iPad (Safari):</strong> Tap Share → "Add to Home Screen"<br>
+                    <strong>💻 Desktop:</strong> Click install icon in address bar
                 </div>
             </div>
             
@@ -170,8 +168,11 @@
                 </ul>
             </div>
             
-            <div style="margin-top: 40px;">
+            <div style="margin-top: 40px; text-align: center;">
                 <a href="/" class="download-btn" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">Go to App</a>
+                <p style="color: #999; margin-top: 20px; font-size: 0.9em;">
+                    APK file not found? <a href="/APK_BUILD_INSTRUCTIONS.md" style="color: #667eea;">See build instructions</a>
+                </p>
             </div>
         </div>
     </div>
