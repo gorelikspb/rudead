@@ -33,3 +33,9 @@ Thumbs.db
 dist/
 build/
 
+# Temporary files
+temp_*/
+*.zip
+*.apk
+!public/*.apk
+
