@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generate PNG Icons for PWA Builder</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            text-align: center;
+            background: #1a1a1a;
+            color: white;
+        }
+        .preview {
+            margin: 20px 0;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+        canvas {
+            border: 2px solid #444;
+            border-radius: 10px;
+            background: white;
+        }
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        button:hover {
+            background: #764ba2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Generate PNG Icons for PWA Builder</h1>
+    <p>This will create icon-192.png and icon-512.png based on your app design</p>
+    
+    <div class="preview">
+        <div>
+            <canvas id="preview192" width="192" height="192"></canvas>
+            <p>192x192</p>
+        </div>
+        <div>
+            <canvas id="preview512" width="512" height="512"></canvas>
+            <p>512x512</p>
+        </div>
+    </div>
+    
+    <button onclick="generateAll()">Generate & Download Icons</button>
+    
+    <script>
+        function drawIcon(ctx, size) {
+            const scale = size / 192; // Base size is 192
+            
+            // Dark background
+            ctx.fillStyle = '#1a1a1a';
+            ctx.fillRect(0, 0, size, size);
+            
+            // Red skull head (circle)
+            const centerX = size / 2;
+            const centerY = size * 0.417; // 80/192
+            const headRadius = size * 0.1875; // 36/192
+            
+            ctx.fillStyle = '#ff4444';
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, headRadius, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Red jaw (rectangle)
+            const jawX = size * 0.365; // 70/192
+            const jawY = centerY;
+            const jawWidth = size * 0.271; // 52/192
+            const jawHeight = size * 0.198; // 38/192
+            
+            ctx.fillRect(jawX, jawY, jawWidth, jawHeight);
+            
+            // Eyes
+            const eyeSize = size * 0.042; // 8/192
+            ctx.fillStyle = '#1a1a1a';
+            ctx.beginPath();
+            ctx.arc(centerX - size * 0.0625, centerY - size * 0.021, eyeSize, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.beginPath();
+            ctx.arc(centerX + size * 0.0625, centerY - size * 0.021, eyeSize, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Mouth (triangle)
+            const mouthY = centerY + size * 0.042; // 88/192
+            ctx.beginPath();
+            ctx.moveTo(centerX, mouthY);
+            ctx.lineTo(centerX - size * 0.042, mouthY + size * 0.0625);
+            ctx.lineTo(centerX + size * 0.042, mouthY + size * 0.0625);
+            ctx.closePath();
+            ctx.fill();
+            
+            // Clock circle
+            const clockCenterX = centerX;
+            const clockCenterY = size * 0.521; // 100/192
+            const clockRadius = size * 0.083; // 16/192
+            
+            ctx.strokeStyle = '#1a1a1a';
+            ctx.lineWidth = size * 0.016; // 3/192
+            ctx.beginPath();
+            ctx.arc(clockCenterX, clockCenterY, clockRadius, 0, Math.PI * 2);
+            ctx.stroke();
+            
+            // Clock hands
+            ctx.lineWidth = size * 0.016;
+            // Hour hand (pointing up)
+            ctx.beginPath();
+            ctx.moveTo(clockCenterX, clockCenterY);
+            ctx.lineTo(clockCenterX, clockCenterY - size * 0.052); // 10/192
+            ctx.stroke();
+            
+            // Minute hand (pointing right)
+            ctx.beginPath();
+            ctx.moveTo(clockCenterX, clockCenterY);
+            ctx.lineTo(clockCenterX + size * 0.0625, clockCenterY); // 12/192
+            ctx.stroke();
+        }
+        
+        function generateIcon(size, filename, canvasId) {
+            const canvas = document.getElementById(canvasId);
+            const ctx = canvas.getContext('2d');
+            
+            drawIcon(ctx, size);
+            
+            // Download
+            canvas.toBlob(blob => {
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = filename;
+                a.click();
+                URL.revokeObjectURL(url);
+            }, 'image/png');
+        }
+        
+        function generateAll() {
+            // Draw previews first
+            const ctx192 = document.getElementById('preview192').getContext('2d');
+            const ctx512 = document.getElementById('preview512').getContext('2d');
+            drawIcon(ctx192, 192);
+            drawIcon(ctx512, 512);
+            
+            // Then download
+            setTimeout(() => {
+                generateIcon(192, 'icon-192.png', 'preview192');
+                setTimeout(() => {
+                    generateIcon(512, 'icon-512.png', 'preview512');
+                    setTimeout(() => {
+                        document.body.innerHTML += '<div style="background: #4CAF50; padding: 20px; border-radius: 10px; margin-top: 20px;"><h2>✅ Icons generated!</h2><p>Check your downloads folder for icon-192.png and icon-512.png</p><p><strong>Next step:</strong> Upload these files to the public/ folder and update manifest.json</p></div>';
+                    }, 500);
+                }, 500);
+            }, 100);
+        }
+        
+        // Draw previews on load
+        window.onload = function() {
+            const ctx192 = document.getElementById('preview192').getContext('2d');
+            const ctx512 = document.getElementById('preview512').getContext('2d');
+            drawIcon(ctx192, 192);
+            drawIcon(ctx512, 512);
+        };
+    </script>
+</body>
+</html>
+
