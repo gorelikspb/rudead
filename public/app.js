@@ -1505,17 +1505,8 @@ async function checkForUpdates() {
                 showUpdateNotification(versionData.updateMessage, versionData.updateUrl);
             }
             
-            // Log version check to admin (for analytics)
-            const userEmail = localStorage.getItem('userEmail');
-            if (userEmail) {
-                logEmailToAdmin({
-                    type: 'version_check',
-                    email: userEmail,
-                    name: 'User',
-                    phone: 'Not provided',
-                    message: `Version check: ${versionData.version} (was: ${storedVersion || 'none'})`
-                });
-            }
+            // Version check logged locally only (no email spam)
+            console.log(`Version updated: ${versionData.version} (was: ${storedVersion || 'none'})`);
         }
     } catch (error) {
         console.error('Error checking for updates:', error);
