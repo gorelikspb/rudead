@@ -7,8 +7,8 @@
     <!-- Primary Meta Tags -->
     <title>Are You Dead? App Download - Free Safety Check-in App</title>
     <meta name="title" content="Are You Dead? App Download - Free Safety Check-in App">
-    <meta name="description" content="Download Are You Dead? App - Free safety check-in app for people living alone. No APK needed - install directly from browser. Works on Android, iOS, and desktop. No registration required.">
-    <meta name="keywords" content="are you dead app download, are you dead app apk, are you dead download, download are you dead app, are you dead app free download, are you dead apk download, safety app download, check-in app download">
+    <meta name="description" content="Download Are You Dead? App - Free safety check-in app. Looking for APK download? Our PWA installation is the best option - no APK file needed, install directly from browser with automatic updates. Works on Android, iOS, and desktop. No registration required.">
+    <meta name="keywords" content="are you dead app download, are you dead app apk, are you dead download, download are you dead app, are you dead app free download, are you dead apk download, are you dead app apk download, safety app download, check-in app download, pwa better than apk">
     <meta name="robots" content="index, follow">
     
     <!-- Open Graph -->
@@ -139,52 +139,43 @@
             <p class="download-subtitle">Free Safety Check-in App</p>
             
             <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin: 30px 0;">
-                <a href="/are-you-dead-app.apk" class="download-btn" id="apk-btn" download style="background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);">
-                    📱 Download APK (Android)
-                </a>
                 <a href="#pwa-instructions" class="download-btn" id="install-btn" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
                     🌐 Install PWA
                 </a>
             </div>
             
-            <div class="note-box" style="background: rgba(76, 175, 80, 0.1); border-left-color: #4CAF50; color: #4CAF50;">
-                <strong>✨ APK Auto-Updates!</strong> The APK uses TWA (Trusted Web Activity) technology - it automatically updates when you update the website. No need to reinstall!
-            </div>
-            
             <div class="install-instructions">
-                <h3>📱 Installation Options:</h3>
-                
-                <div class="install-step">
-                    <strong>📦 Option 1: Download APK (Android)</strong><br>
-                    1. Click "Download APK" button above<br>
-                    2. Open Settings → Security → Enable "Install from Unknown Sources"<br>
-                    3. Open the downloaded APK file<br>
-                    4. Tap "Install"<br>
-                    5. The app will install and auto-update from the website!<br>
-                    <em style="color: #999;">Note: APK uses TWA technology - it automatically updates when we update the website.</em>
-                </div>
+                <h3>📱 Installation Instructions:</h3>
                 
                 <div class="install-step" id="pwa-instructions">
-                    <strong>🌐 Option 2: Install PWA (All Devices)</strong><br>
+                    <strong>🌐 Install as PWA (All Devices)</strong><br>
                     <strong>🤖 Android (Chrome):</strong> Tap menu (3 dots) → "Add to Home Screen"<br>
                     <strong>🍎 iPhone/iPad (Safari):</strong> Tap Share → "Add to Home Screen"<br>
                     <strong>💻 Desktop:</strong> Click install icon in address bar
                 </div>
             </div>
             
+            <!-- SEO content for APK search queries (hidden from users) -->
+            <div style="position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden;">
+                <p>Are You Dead? App APK download - Looking for APK download? Our PWA installation is the best option! No APK file needed - install directly from browser. Better than APK: automatic updates, smaller size, works on all devices. If you're searching for "are you dead app apk download" or "are you dead apk", our Progressive Web App (PWA) installation is superior to traditional APK files. No need to download APK manually - just install from browser and get automatic updates. Best alternative to APK download for Are You Dead? App.</p>
+            </div>
+            
             <div class="install-instructions">
-                <h3>Why No APK?</h3>
+                <h3>Why PWA is Better Than APK Download?</h3>
                 <p style="color: #ccc; line-height: 1.8;">
-                    This app uses Progressive Web App (PWA) technology, which means:
+                    If you're searching for "APK download", our PWA installation is the best option! This app uses Progressive Web App (PWA) technology, which means:
                 </p>
                 <ul class="features-list">
+                    <li><strong>Better Than APK</strong> - No need to download APK file manually</li>
                     <li><strong>No App Store Required</strong> - Install directly from browser</li>
-                    <li><strong>No APK File</strong> - No need to download and install APK manually</li>
+                    <li><strong>Automatic Updates</strong> - Always gets latest version (better than APK)</li>
                     <li><strong>Works Offline</strong> - App works even without internet connection</li>
-                    <li><strong>Smaller Size</strong> - Much smaller than traditional apps</li>
-                    <li><strong>Always Updated</strong> - Automatically gets latest version</li>
-                    <li><strong>Cross-Platform</strong> - Same app works on Android, iOS, Windows, Mac</li>
+                    <li><strong>Smaller Size</strong> - Much smaller than traditional APK files</li>
+                    <li><strong>Cross-Platform</strong> - Same app works on Android, iOS, Windows, Mac (no separate APK needed)</li>
                 </ul>
+                <p style="color: #999; font-style: italic; margin-top: 15px;">
+                    Looking for "are you dead app apk download"? Our PWA installation is the superior alternative to APK files - no manual download needed, automatic updates, and works on all devices!
+                </p>
             </div>
             
             <div class="install-instructions">
@@ -200,38 +191,11 @@
             
             <div style="margin-top: 40px; text-align: center;">
                 <a href="/" class="download-btn" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">Go to App</a>
-                <p style="color: #999; margin-top: 20px; font-size: 0.9em;">
-                    APK file not found? <a href="/APK_BUILD_INSTRUCTIONS.md" style="color: #667eea;">See build instructions</a>
-                </p>
             </div>
         </div>
     </div>
     
     <script>
-        // Check if APK file exists
-        const apkBtn = document.getElementById('apk-btn');
-        fetch('/are-you-dead-app.apk', { method: 'HEAD' })
-            .then(response => {
-                if (!response.ok) {
-                    apkBtn.style.opacity = '0.5';
-                    apkBtn.style.cursor = 'not-allowed';
-                    apkBtn.onclick = function(e) {
-                        e.preventDefault();
-                        alert('APK file is being prepared. Please use PWA installation for now, or check back later.');
-                    };
-                    apkBtn.textContent = '📱 APK Coming Soon';
-                }
-            })
-            .catch(() => {
-                apkBtn.style.opacity = '0.5';
-                apkBtn.style.cursor = 'not-allowed';
-                apkBtn.onclick = function(e) {
-                    e.preventDefault();
-                    alert('APK file is being prepared. Please use PWA installation for now, or check back later.');
-                };
-                apkBtn.textContent = '📱 APK Coming Soon';
-            });
-        
         // Check if already installed
         const installBtn = document.getElementById('install-btn');
         if (window.matchMedia('(display-mode: standalone)').matches) {
