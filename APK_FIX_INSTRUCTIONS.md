@@ -11,7 +11,11 @@
 
 ## ✅ Решение:
 
-### Шаг 1: Пересобрать APK через PWA Builder
+### ⚠️ ГЛАВНАЯ ПРОБЛЕМА: APK неподписанный!
+
+PWA Builder сгенерировал **неподписанный APK**, поэтому Android не может его установить. Нужно пересобрать APK **с подписью**.
+
+### Шаг 1: Пересобрать ПОДПИСАННЫЙ APK через PWA Builder
 
 1. **Открой PWA Builder:**
    - Зайди на https://www.pwabuilder.com/
@@ -24,14 +28,17 @@
    - HTTPS включен ✅
    - Иконки доступны ✅
 
-3. **Собери APK:**
+3. **Собери ПОДПИСАННЫЙ APK:**
    - Нажми "Package For Stores" → "Android"
    - Выбери **"Trusted Web Activity (TWA)"** (НЕ Capacitor!)
-   - Заполни:
+   - **В диалоге "Android Options":**
      - **Package name:** `com.areyoudeadapp.app`
      - **App name:** `Are You Dead?`
      - **Version:** `1.0.0`
      - **Version code:** `1`
+     - **✅ КРИТИЧЕСКИ ВАЖНО: Выбери "Generate signed package" или "Sign APK"**
+     - Если есть опция "Signing key" → выбери "Create new key"
+     - **Сохрани ключ подписи!** Он понадобится для обновлений
    - Нажми "Generate Package"
 
 4. **Скачай и проверь APK:**
