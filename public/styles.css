@@ -868,6 +868,196 @@ footer a:hover {
     opacity: 0.9;
 }
 
+/* Hint Tooltip */
+.hint-tooltip {
+    position: fixed;
+    bottom: 200px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(102, 126, 234, 0.95);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(102, 126, 234, 0.5);
+    border-radius: 12px;
+    padding: 12px 20px;
+    z-index: 9999;
+    animation: hintPulse 2s infinite;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease-in;
+}
+
+.hint-tooltip[style*="display: block"] {
+    opacity: 1;
+}
+
+.hint-arrow {
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-top: 12px solid rgba(102, 126, 234, 0.95);
+    animation: arrowBounce 1s infinite;
+}
+
+.hint-text {
+    color: white;
+    font-weight: 600;
+    font-size: 0.95em;
+    text-align: center;
+    white-space: nowrap;
+}
+
+@keyframes hintPulse {
+    0%, 100% { opacity: 0.9; transform: translateX(-50%) scale(1); }
+    50% { opacity: 1; transform: translateX(-50%) scale(1.05); }
+}
+
+@keyframes arrowBounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-5px); }
+}
+
+/* Email Popup */
+.email-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    z-index: 10001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.email-popup {
+    background: var(--card-bg);
+    border: 2px solid rgba(102, 126, 234, 0.3);
+    border-radius: 20px;
+    padding: 30px;
+    max-width: 400px;
+    width: calc(100% - 40px);
+    position: relative;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    animation: slideUpPopup 0.3s ease-out;
+}
+
+.email-popup-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    color: var(--text-light);
+    font-size: 28px;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s;
+}
+
+.email-popup-close:hover {
+    color: var(--text-color);
+}
+
+.email-popup h3 {
+    color: var(--text-color);
+    margin-bottom: 10px;
+    font-size: 1.5em;
+    padding-right: 30px;
+}
+
+.email-popup p {
+    color: var(--text-light);
+    margin-bottom: 20px;
+    font-size: 0.95em;
+    line-height: 1.5;
+}
+
+.email-popup-input {
+    width: 100%;
+    padding: 12px 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1.5px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    color: var(--text-color);
+    font-size: 1em;
+    margin-bottom: 15px;
+    transition: all 0.3s;
+}
+
+.email-popup-input:focus {
+    outline: none;
+    border-color: rgba(102, 126, 234, 0.5);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.email-popup-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.email-popup-submit,
+.email-popup-skip {
+    flex: 1;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.email-popup-submit {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.email-popup-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.email-popup-skip {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-light);
+    border: 1.5px solid rgba(255, 255, 255, 0.2);
+}
+
+.email-popup-skip:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: var(--text-color);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUpPopup {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 @media (max-width: 600px) {
     h1 {
         font-size: 2em;
@@ -909,6 +1099,16 @@ footer a:hover {
     .toast-notification {
         max-width: calc(100% - 40px);
         padding: 14px 18px;
+    }
+    
+    .hint-tooltip {
+        bottom: 180px;
+        padding: 10px 16px;
+        font-size: 0.85em;
+    }
+    
+    .email-popup {
+        padding: 25px 20px;
     }
 }
 

@@ -6,6 +6,6 @@
     "canvas": "^3.2.1"
   },
   "devDependencies": {
-    "puppeteer": "^21.0.0"
+    "puppeteer": "^21.11.0"
   }
 }

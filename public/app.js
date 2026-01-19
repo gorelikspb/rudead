@@ -567,6 +567,12 @@ function init() {
     updateCheckInStatus();
     requestNotificationPermission();
     checkNotificationStatus();
+    
+    // Setup hint tooltip and email popup
+    setupHintTooltip();
+    setupEmailPopup();
+    setupScrollAnalytics();
+    setupEmailPopupBeforeUnload();
 }
 
 // SEO meta tags for different languages
@@ -645,6 +651,9 @@ function loadLanguage(lang) {
     // Update punchline when language changes
     currentPunchlineIndex = 0;
     updatePunchline();
+    
+    // Update hint tooltip text if it's currently shown
+    updateHintTooltipText();
     
     updateCheckInStatus();
 }
@@ -1244,7 +1253,16 @@ function setupEventListeners() {
     }
     
     // Check-in button
-    document.getElementById('checkin-btn').addEventListener('click', checkIn);
+    const checkinBtn = document.getElementById('checkin-btn');
+    checkinBtn.addEventListener('click', () => {
+        checkIn();
+        // Hide hint tooltip when user clicks
+        hideHintTooltip();
+        // Show email popup after first check-in (if not shown before)
+        setTimeout(() => {
+            showEmailPopupIfNeeded();
+        }, 1000);
+    });
     
     // Save contact button
     document.getElementById('save-contact-btn').addEventListener('click', saveContact);
@@ -1569,6 +1587,452 @@ async function notifyUserViaEmail(subject, message) {
         });
     } catch (error) {
         console.error('Error sending user notification:', error);
+    }
+}
+
+// Hint Tooltip Functions
+let hintTooltipTimeout = null;
+let hintTooltipShown = false;
+
+function setupHintTooltip() {
+    // Show hint after 5 seconds if user hasn't clicked
+    hintTooltipTimeout = setTimeout(() => {
+        const lastCheckIn = localStorage.getItem('lastCheckIn');
+        const checkinBtn = document.getElementById('checkin-btn');
+        const hintTooltip = document.getElementById('hint-tooltip');
+        
+        // Debug logging
+        console.log('Hint tooltip check:', {
+            lastCheckIn: lastCheckIn,
+            checkinBtn: !!checkinBtn,
+            hintTooltip: !!hintTooltip,
+            hintTooltipShown: hintTooltipShown
+        });
+        
+        // Show hint if button exists and tooltip exists, and user hasn't checked in yet
+        // For testing: temporarily show even if lastCheckIn exists - remove "|| true" to only show when no check-in
+        const shouldShow = !lastCheckIn || true; // TODO: Remove "|| true" for production
+        
+        if (checkinBtn && hintTooltip && !hintTooltipShown && shouldShow) {
+            showHintTooltip();
+        }
+    }, 5000);
+}
+
+// Update hint tooltip text based on current language
+function updateHintTooltipText() {
+    const hintTooltip = document.getElementById('hint-tooltip');
+    const hintText = document.getElementById('hint-text');
+    
+    if (!hintTooltip || !hintText) return;
+    
+    // Only update if tooltip is currently visible
+    if (hintTooltip.style.display !== 'block' && hintTooltip.style.display !== '') {
+        return;
+    }
+    
+    const hintTexts = {
+        en: 'Click "No" - but only if you\'re alive! 😄',
+        ru: 'Нажми "Нет" - но только если ты жив! 😄',
+        es: '¡Haz clic en "No" - pero solo si estás vivo! 😄',
+        de: 'Klicke auf "Nein" - aber nur wenn du lebst! 😄',
+        fr: 'Clique sur "Non" - mais seulement si tu es vivant! 😄',
+        zh: '点击"不" - 但只有当你还活着的时候！😄'
+    };
+    
+    hintText.textContent = hintTexts[currentLang] || hintTexts.en;
+}
+
+function showHintTooltip() {
+    const hintTooltip = document.getElementById('hint-tooltip');
+    const hintText = document.getElementById('hint-text');
+    const checkinBtn = document.getElementById('checkin-btn');
+    
+    if (!hintTooltip || !hintText || !checkinBtn) {
+        console.error('Hint tooltip elements not found:', {
+            hintTooltip: !!hintTooltip,
+            hintText: !!hintText,
+            checkinBtn: !!checkinBtn
+        });
+        return;
+    }
+    
+    // Update text based on language
+    updateHintTooltipText();
+    
+    // Position tooltip above the button
+    const btnRect = checkinBtn.getBoundingClientRect();
+    const tooltipHeight = 60; // Approximate height of tooltip
+    const offset = 20; // Space between button and tooltip
+    
+    // Calculate position from bottom of viewport
+    const distanceFromTop = btnRect.top;
+    const bottomPosition = window.innerHeight - distanceFromTop + offset;
+    
+    hintTooltip.style.bottom = `${bottomPosition}px`;
+    hintTooltip.style.left = '50%';
+    hintTooltip.style.transform = 'translateX(-50%)';
+    hintTooltip.style.display = 'block';
+    // Force opacity to show
+    setTimeout(() => {
+        hintTooltip.style.opacity = '1';
+    }, 10);
+    hintTooltipShown = true;
+    
+    console.log('Hint tooltip shown at:', {
+        bottom: hintTooltip.style.bottom,
+        btnTop: btnRect.top,
+        windowHeight: window.innerHeight
+    });
+    
+    // Auto-hide after 10 seconds
+    setTimeout(() => {
+        hideHintTooltip();
+    }, 10000);
+}
+
+function hideHintTooltip() {
+    const hintTooltip = document.getElementById('hint-tooltip');
+    if (hintTooltip) {
+        hintTooltip.style.opacity = '0';
+        setTimeout(() => {
+            hintTooltip.style.display = 'none';
+        }, 300);
+    }
+    if (hintTooltipTimeout) {
+        clearTimeout(hintTooltipTimeout);
+        hintTooltipTimeout = null;
+    }
+}
+
+// Email Popup Functions
+let emailPopupShown = false;
+let emailPopupTimeout = null;
+
+function setupEmailPopup() {
+    const emailPopupOverlay = document.getElementById('email-popup-overlay');
+    const emailPopupClose = document.getElementById('email-popup-close');
+    const emailPopupSkip = document.getElementById('email-popup-skip');
+    const emailPopupSubmit = document.getElementById('email-popup-submit');
+    
+    if (!emailPopupOverlay) return;
+    
+    // Close button
+    if (emailPopupClose) {
+        emailPopupClose.addEventListener('click', () => {
+            hideEmailPopup();
+            // Don't show again for 7 days
+            localStorage.setItem('emailPopupDismissed', Date.now().toString());
+        });
+    }
+    
+    // Skip button
+    if (emailPopupSkip) {
+        emailPopupSkip.addEventListener('click', () => {
+            hideEmailPopup();
+            // Show again after 20 seconds
+            setTimeout(() => {
+                showEmailPopupIfNeeded();
+            }, 20000);
+        });
+    }
+    
+    // Submit button
+    if (emailPopupSubmit) {
+        emailPopupSubmit.addEventListener('click', () => {
+            const emailInput = document.getElementById('email-popup-input');
+            const email = emailInput.value.trim();
+            
+            if (email && email.includes('@')) {
+                // Save email
+                localStorage.setItem('userEmail', email);
+                
+                // Log to admin
+                logEmailToAdmin({
+                    type: 'user_popup',
+                    email: email,
+                    name: 'User',
+                    phone: 'Not provided'
+                });
+                
+                // Save to history
+                saveEmailToHistory({
+                    type: 'user_popup',
+                    email: email,
+                    name: 'User',
+                    phone: 'Not provided',
+                    timestamp: new Date().toISOString()
+                });
+                
+                hideEmailPopup();
+                showEmailSyncToast();
+                
+                // Don't show again
+                localStorage.setItem('emailPopupDismissed', Date.now().toString());
+            } else {
+                alert(translations[currentLang]?.['user-email-error'] || 'Please enter a valid email address');
+            }
+        });
+    }
+    
+    // Close on overlay click
+    emailPopupOverlay.addEventListener('click', (e) => {
+        if (e.target === emailPopupOverlay) {
+            hideEmailPopup();
+            localStorage.setItem('emailPopupDismissed', Date.now().toString());
+        }
+    });
+}
+
+function showEmailPopupIfNeeded() {
+    // Check if already shown or dismissed recently
+    const dismissed = localStorage.getItem('emailPopupDismissed');
+    if (dismissed) {
+        const dismissedTime = parseInt(dismissed);
+        const daysSinceDismissed = (Date.now() - dismissedTime) / (24 * 60 * 60 * 1000);
+        // Don't show again for 7 days
+        if (daysSinceDismissed < 7) {
+            console.log('Email popup dismissed recently, not showing');
+            return;
+        }
+    }
+    
+    // Check if user already has email saved
+    const savedEmail = localStorage.getItem('userEmail');
+    if (savedEmail) {
+        console.log('User email already saved, not showing popup');
+        return;
+    }
+    
+    // Don't show if already shown in this session
+    if (emailPopupShown) {
+        console.log('Email popup already shown in this session');
+        return;
+    }
+    
+    console.log('Email popup will show in 1 second...');
+    // Show popup after a delay (1 second after check-in)
+    emailPopupTimeout = setTimeout(() => {
+        showEmailPopup();
+    }, 1000);
+}
+
+// Setup email popup before page unload
+function setupEmailPopupBeforeUnload() {
+    let beforeUnloadTriggered = false;
+    
+    window.addEventListener('beforeunload', () => {
+        // Only show if user hasn't saved email and popup hasn't been shown recently
+        const savedEmail = localStorage.getItem('userEmail');
+        const dismissed = localStorage.getItem('emailPopupDismissed');
+        
+        if (!savedEmail && !beforeUnloadTriggered) {
+            // Check if dismissed less than 7 days ago
+            if (dismissed) {
+                const dismissedTime = parseInt(dismissed);
+                const daysSinceDismissed = (Date.now() - dismissedTime) / (24 * 60 * 60 * 1000);
+                if (daysSinceDismissed < 7) {
+                    return; // Don't show if dismissed recently
+                }
+            }
+            
+            // Show popup one last time before leaving
+            beforeUnloadTriggered = true;
+            showEmailPopup();
+            
+            // Prevent immediate page unload to give user time to see popup
+            // Note: Modern browsers ignore custom messages in beforeunload
+            return true;
+        }
+    });
+    
+    // Also try to show on visibility change (tab switch, minimize)
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            // Page is being hidden, try to show popup
+            const savedEmail = localStorage.getItem('userEmail');
+            const dismissed = localStorage.getItem('emailPopupDismissed');
+            
+            if (!savedEmail && !emailPopupShown) {
+                if (dismissed) {
+                    const dismissedTime = parseInt(dismissed);
+                    const daysSinceDismissed = (Date.now() - dismissedTime) / (24 * 60 * 60 * 1000);
+                    if (daysSinceDismissed >= 7) {
+                        showEmailPopup();
+                    }
+                } else {
+                    showEmailPopup();
+                }
+            }
+        }
+    });
+}
+
+// Make functions available globally for testing
+window.testEmailPopup = function() {
+    // Clear dismiss flag and saved email for testing
+    localStorage.removeItem('emailPopupDismissed');
+    localStorage.removeItem('userEmail');
+    emailPopupShown = false;
+    console.log('Test mode: cleared email popup flags, popup will show on next check-in');
+};
+
+window.showEmailPopupNow = function() {
+    // Force show popup immediately for testing
+    localStorage.removeItem('emailPopupDismissed');
+    emailPopupShown = false;
+    showEmailPopup();
+    console.log('Test mode: showing email popup now');
+};
+
+function showEmailPopup() {
+    const emailPopupOverlay = document.getElementById('email-popup-overlay');
+    const emailPopupTitle = document.getElementById('email-popup-title');
+    const emailPopupDescription = document.getElementById('email-popup-description');
+    
+    if (!emailPopupOverlay) {
+        console.error('Email popup overlay not found');
+        return;
+    }
+    
+    // Update text based on language
+    const popupTexts = {
+        en: {
+            title: 'Sync Across Devices',
+            description: 'Save your email to sync your check-ins across all devices. If you forget to check in, you can do it later from any device!'
+        },
+        ru: {
+            title: 'Синхронизация между устройствами',
+            description: 'Сохрани email для синхронизации отметок на всех устройствах. Если забудешь отметиться - сможешь сделать это позже с любого устройства!'
+        },
+        es: {
+            title: 'Sincronizar entre dispositivos',
+            description: 'Guarda tu email para sincronizar tus registros en todos los dispositivos. Si olvidas registrarte, puedes hacerlo más tarde desde cualquier dispositivo!'
+        },
+        de: {
+            title: 'Synchronisierung zwischen Geräten',
+            description: 'Speichere deine E-Mail, um deine Check-ins auf allen Geräten zu synchronisieren. Wenn du vergisst, dich einzutragen, kannst du es später von jedem Gerät aus tun!'
+        },
+        fr: {
+            title: 'Synchronisation entre appareils',
+            description: 'Enregistre ton email pour synchroniser tes enregistrements sur tous les appareils. Si tu oublies de t\'enregistrer, tu peux le faire plus tard depuis n\'importe quel appareil!'
+        },
+        zh: {
+            title: '跨设备同步',
+            description: '保存您的邮箱以在所有设备上同步您的签到。如果您忘记签到，可以稍后从任何设备进行签到！'
+        }
+    };
+    
+    const texts = popupTexts[currentLang] || popupTexts.en;
+    if (emailPopupTitle) emailPopupTitle.textContent = texts.title;
+    if (emailPopupDescription) emailPopupDescription.textContent = texts.description;
+    
+    emailPopupOverlay.style.display = 'flex';
+    emailPopupShown = true;
+    console.log('Email popup shown');
+}
+
+function hideEmailPopup() {
+    const emailPopupOverlay = document.getElementById('email-popup-overlay');
+    if (emailPopupOverlay) {
+        emailPopupOverlay.style.display = 'none';
+    }
+    if (emailPopupTimeout) {
+        clearTimeout(emailPopupTimeout);
+        emailPopupTimeout = null;
+    }
+}
+
+// Scroll Analytics
+let scrollAnalytics = {
+    maxScroll: 0,
+    scrollEvents: [],
+    seoArticleReached: false,
+    startTime: Date.now()
+};
+
+function setupScrollAnalytics() {
+    let scrollTimeout = null;
+    let lastScrollTime = Date.now();
+    
+    window.addEventListener('scroll', () => {
+        const scrollPercent = Math.round((window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100);
+        
+        // Track max scroll
+        if (scrollPercent > scrollAnalytics.maxScroll) {
+            scrollAnalytics.maxScroll = scrollPercent;
+        }
+        
+        // Track SEO article reach
+        const seoArticle = document.querySelector('.seo-article');
+        if (seoArticle && !scrollAnalytics.seoArticleReached) {
+            const rect = seoArticle.getBoundingClientRect();
+            if (rect.top < window.innerHeight) {
+                scrollAnalytics.seoArticleReached = true;
+                logScrollEvent('seo_article_reached', scrollPercent);
+            }
+        }
+        
+        // Debounce scroll events (log every 2 seconds max)
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+            const timeSinceLastScroll = Date.now() - lastScrollTime;
+            if (timeSinceLastScroll >= 2000) {
+                logScrollEvent('scroll', scrollPercent);
+                lastScrollTime = Date.now();
+            }
+        }, 500);
+    });
+    
+    // Log scroll analytics on page unload
+    window.addEventListener('beforeunload', () => {
+        sendScrollAnalytics();
+    });
+    
+    // Also log periodically (every 30 seconds)
+    setInterval(() => {
+        if (scrollAnalytics.scrollEvents.length > 0) {
+            sendScrollAnalytics();
+        }
+    }, 30000);
+}
+
+function logScrollEvent(type, scrollPercent) {
+    scrollAnalytics.scrollEvents.push({
+        type: type,
+        scrollPercent: scrollPercent,
+        timestamp: Date.now()
+    });
+    
+    // Keep only last 50 events
+    if (scrollAnalytics.scrollEvents.length > 50) {
+        scrollAnalytics.scrollEvents.shift();
+    }
+}
+
+async function sendScrollAnalytics() {
+    if (scrollAnalytics.scrollEvents.length === 0) return;
+    
+    try {
+        const analyticsData = {
+            type: 'scroll_analytics',
+            maxScroll: scrollAnalytics.maxScroll,
+            seoArticleReached: scrollAnalytics.seoArticleReached,
+            timeOnPage: Date.now() - scrollAnalytics.startTime,
+            scrollEvents: scrollAnalytics.scrollEvents.slice(-10), // Send last 10 events
+            timestamp: new Date().toISOString()
+        };
+        
+        await fetch('https://rudead.gorelikgo.workers.dev/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(analyticsData)
+        });
+        
+        // Clear sent events
+        scrollAnalytics.scrollEvents = [];
+    } catch (error) {
+        console.error('Failed to send scroll analytics:', error);
     }
 }
 

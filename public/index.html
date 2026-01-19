@@ -112,6 +112,12 @@
         </header>
 
         <main>
+            <!-- Hint tooltip with arrow pointing to button -->
+            <div class="hint-tooltip" id="hint-tooltip" style="display: none;">
+                <div class="hint-arrow"></div>
+                <div class="hint-text" id="hint-text">Click the button to check in!</div>
+            </div>
+            
             <button class="checkin-btn" id="checkin-btn">
                 <span id="checkin-btn-text">No</span>
             </button>
@@ -167,7 +173,7 @@
                     <strong style="color: #fff;">Install as PWA (All Devices)</strong><br>
                     <strong style="color: #fff;">Android:</strong> Tap menu (3 dots) → "Add to Home Screen"<br>
                     <strong style="color: #fff;">iPhone:</strong> Tap Share button → "Add to Home Screen"<br>
-                    <strong style="color: #fff;">Desktop:</strong> Click install icon in address bar
+                    <strong style="color: #fff;">Desktop:</strong> Click menu (3 dots) → "Cast, save, and share" → "Install Are You Dead? App"
                 </p>
                 <a href="/download/" style="color: #667eea; text-decoration: underline; font-weight: 500;">📥 Detailed installation instructions</a>
                 <!-- SEO: If searching for APK download, PWA is better -->
@@ -326,6 +332,20 @@
                 <div class="toast-text">
                     <strong id="toast-title">Email Saved!</strong>
                     <p id="toast-message">We've saved your email and will notify you when cross-device sync is available (coming very soon!)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Email Collection Popup -->
+        <div class="email-popup-overlay" id="email-popup-overlay" style="display: none;">
+            <div class="email-popup">
+                <button class="email-popup-close" id="email-popup-close">&times;</button>
+                <h3 id="email-popup-title">Stay Updated!</h3>
+                <p id="email-popup-description">Get notified about new features and updates. We'll never spam you!</p>
+                <input type="email" id="email-popup-input" placeholder="your-email@example.com" class="email-popup-input">
+                <div class="email-popup-buttons">
+                    <button class="email-popup-submit" id="email-popup-submit">Subscribe</button>
+                    <button class="email-popup-skip" id="email-popup-skip">Maybe Later</button>
                 </div>
             </div>
         </div>

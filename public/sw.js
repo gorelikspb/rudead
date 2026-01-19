@@ -18,16 +18,28 @@ self.addEventListener('install', (event) => {
 
 // Fetch event
 self.addEventListener('fetch', (event) => {
+  // Skip caching for non-GET requests (POST, PUT, DELETE, etc.)
+  if (event.request.method !== 'GET') {
+    return; // Let the browser handle non-GET requests normally
+  }
+  
+  // Skip caching for API requests to Cloudflare Worker
+  if (event.request.url.includes('workers.dev') || event.request.url.includes('rudead.gorelikgo')) {
+    return; // Don't cache API requests
+  }
+  
   // For HTML files, always try network first
   if (event.request.url.includes('.html') || event.request.url.endsWith('/')) {
     event.respondWith(
       fetch(event.request)
         .then((response) => {
-          // Cache the fresh version
-          const responseClone = response.clone();
-          caches.open(CACHE_NAME).then((cache) => {
-            cache.put(event.request, responseClone);
-          });
+          // Only cache successful GET responses
+          if (response.status === 200 && event.request.method === 'GET') {
+            const responseClone = response.clone();
+            caches.open(CACHE_NAME).then((cache) => {
+              cache.put(event.request, responseClone);
+            });
+          }
           return response;
         })
         .catch(() => {
@@ -41,11 +53,13 @@ self.addEventListener('fetch', (event) => {
       caches.match(event.request)
         .then((response) => {
           return response || fetch(event.request).then((response) => {
-            // Cache the fresh version
-            const responseClone = response.clone();
-            caches.open(CACHE_NAME).then((cache) => {
-              cache.put(event.request, responseClone);
-            });
+            // Only cache successful GET responses
+            if (response.status === 200 && event.request.method === 'GET') {
+              const responseClone = response.clone();
+              caches.open(CACHE_NAME).then((cache) => {
+                cache.put(event.request, responseClone);
+              });
+            }
             return response;
           });
         })

@@ -244,3 +244,121 @@ Same concept, but accessible to everyone. The 'Are You Dead?' app solves the sam
 - Будь готов отвечать на вопросы о приложении
 - Не спамь - один качественный комментарий лучше чем несколько
 
+---
+
+### Пост: "What kind of thing would you like to create right now?"
+**Upvotes:** 1 | **Комментарии:** 0 | **Время:** 1 мин назад
+**Статус:** ✅ ИДЕАЛЬНЫЙ для комментирования (ранний, нет комментариев)
+
+#### Вариант 1 (простой, без упоминания приложения):
+"Something that solves a real problem people don't talk about. Like a simple tool that makes daily life safer or easier. Small things can have big impact. 🔧"
+
+#### Вариант 2 (с упоминанием приложения - органично):
+"I just created the 'Are You Dead?' app - a free safety check-in tool for people living alone. It's something I wish existed when I needed it. Simple idea, but can literally save lives. Sometimes the best things to create are the ones that solve problems you've experienced yourself. 🚀"
+
+#### Вариант 3 (с фокусом на проблеме):
+"Tools that help people who live alone stay safe. It's a real problem - if something happens, who would know? I built something simple that solves this. Sometimes the best creations come from personal experience. 🏠"
+
+#### Вариант 4 (короткий, естественный):
+"A simple app that helps people living alone stay safe. Just finished it actually - free, no registration, works offline. Sometimes the best things to create are the ones you need yourself. ✨"
+
+#### Вариант 5 (с юмором):
+"Something useful that doesn't cost money. I just made a free safety app because I got tired of paid solutions for basic problems. Sometimes you just have to build it yourself 😅"
+
+### Рекомендация:
+**Для набора кармы:** Используй **Вариант 1** - простой, естественный, без упоминания приложения.
+
+**Для органичного упоминания:** Используй **Вариант 2** или **Вариант 4** - они естественно упоминают приложение в контексте ответа на вопрос "что бы ты хотел создать".
+
+---
+
+### Пост: "What's something you would teach your kid that you were never taught by your parents?"
+**Upvotes:** 1 | **Комментарии:** 0 | **Время:** 1 мин назад
+**Статус:** ✅ ИДЕАЛЬНЫЙ для комментирования (ранний, нет комментариев)
+
+#### Вариант 1 (с юмором):
+"How to actually use a washing machine. My parents just... did laundry? I had to Google 'how to do laundry' at 22. Embarrassing but necessary 😅"
+
+#### Вариант 2 (с юмором):
+"That it's okay to not know everything. My parents acted like adults just... know stuff. Turns out we're all just winging it and hoping no one notices. 🤷"
+
+#### Вариант 3 (с юмором):
+"How to cook something that isn't pasta or toast. My parents' idea of cooking was 'heat it up.' I survived on instant noodles until I was 25. Now I can make... slightly better noodles! 🍜"
+
+#### Вариант 4 (с юмором):
+"That asking for help isn't weakness. My parents were very 'figure it out yourself' which is great until you're trying to assemble IKEA furniture alone at 2am crying 😂"
+
+---
+
+### Пост: "What's the most useful thing you've ever bought for under $20?"
+**Upvotes:** 1 | **Комментарии:** 0 | **Время:** 1 мин назад
+**Статус:** ✅ ИДЕАЛЬНЫЙ для комментирования (ранний, нет комментариев)
+
+#### Вариант 1 (с юмором):
+"A phone mount for my car. $12 and I went from 'where am I going?' to 'I know exactly where I am!' Best $12 I ever spent. My GPS voice is now my best friend. 📱"
+
+#### Вариант 2 (с юмором):
+"A pack of those command strips. $8 and I can hang things without drilling holes. My landlord is happy, my walls are happy, I'm happy. Revolutionary stuff 😅"
+
+#### Вариант 3 (с юмором):
+"A good can opener. $15 and I can finally open cans without looking like I'm fighting with them. Small victories matter! 🥫"
+
+#### Вариант 4 (с юмором):
+"A simple first aid kit. $15 and I've used it more times than I'd like to admit. Turns out I'm clumsier than I thought. Worth every penny! 🩹"
+
+#### Вариант 5 (с юмором):
+"One of those phone chargers with a long cable. $10 and I can now use my phone while it charges. Life-changing technology right here 😂"
+
+---
+
+### Пост: "What's an example of "pretty privilege" you've seen in real life?"
+**Upvotes:** 1 | **Комментарии:** 0 | **Время:** 1 мин назад
+**Статус:** ✅ ИДЕАЛЬНЫЙ для комментирования (ранний, нет комментариев)
+
+#### Вариант 1 (с юмором):
+"Getting free drinks at bars while I'm paying full price for the same thing. My attractive friend: 'Oh, it's on the house!' Me: 'Can I get that too?' Bartender: 'That'll be $8.' 😅"
+
+#### Вариант 2 (с юмором):
+"Customer service being way nicer. Same problem, completely different energy. Attractive person gets 'Oh no! Let me fix that immediately!' I get 'Did you try turning it off and on again?' 🤷"
+
+#### Вариант 3 (с юмором):
+"Getting away with being late. Attractive person: 'Sorry I'm late!' Everyone: 'No worries!' Me (5 minutes late): 'You're always late.' Life isn't fair 😂"
+
+#### Вариант 4 (с юмором):
+"People holding doors open from way further away. I've seen someone sprint to hold a door for an attractive person. Meanwhile I'm right there and the door closes in my face. The struggle is real! 🚪"
+
+---
+
+### Пост: "What is a common advice that is actually terrible?"
+**Upvotes:** 1 | **Комментарии:** 1 | **Время:** 1 мин назад
+**Статус:** ✅ ИДЕАЛЬНЫЙ для комментирования (ранний, мало комментариев)
+
+#### Вариант 1 (с юмором):
+"'Just follow your passion.' Great, but my passion is eating pizza and watching Netflix. That's not a career path, that's a Tuesday 😅"
+
+#### Вариант 2 (с юмором):
+"'You don't need anyone, be independent.' Yeah, until you slip in the shower and can't reach your phone. Then you realize maybe having someone check on you isn't so bad 😂"
+
+#### Вариант 3 (с юмором):
+"'Just be yourself.' But myself is awkward and says weird things. Sometimes you need to be a slightly better version of yourself! 😅"
+
+#### Вариант 4 (с юмором):
+"'Money can't buy happiness.' Sure, but it can buy pizza, and pizza makes me pretty happy. Let's not pretend money doesn't solve problems! 🍕"
+
+#### Вариант 5 (с юмором):
+"'Everything happens for a reason.' Tell that to my car breaking down on the highway. What's the reason? To make me late and broke? Not helpful! 😤"
+
+### Рекомендация для новых постов:
+**Все варианты с юмором, без упоминания приложения - для набора кармы!**
+
+**Приоритет комментирования:**
+1. ✅ **Пост про "teach your kid"** - 4 юмористических варианта
+2. ✅ **Пост про "under $20"** - 5 юмористических вариантов
+3. ✅ **Пост про "pretty privilege"** - 4 юмористических варианта
+4. ✅ **Пост про "terrible advice"** - 5 юмористических вариантов
+
+**Стратегия:**
+- Все варианты с юмором для набора кармы
+- Выбирай тот, который больше нравится или адаптируй под свой стиль
+- Можно комментировать все 4 поста - они свежие и имеют низкую активность
+

@@ -124,6 +124,49 @@
             width: 20px;
             height: 20px;
         }
+        .expand-btn {
+            width: 100%;
+            background: rgba(102, 126, 234, 0.15);
+            border: 2px solid rgba(102, 126, 234, 0.3);
+            color: #fff;
+            padding: 15px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+        }
+        .expand-btn:hover {
+            background: rgba(102, 126, 234, 0.25);
+            border-color: rgba(102, 126, 234, 0.5);
+        }
+        .expand-icon {
+            transition: transform 0.3s;
+            font-size: 0.8em;
+        }
+        .expand-btn.expanded .expand-icon {
+            transform: rotate(180deg);
+        }
+        .expandable-content {
+            animation: slideDown 0.3s ease-out;
+        }
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                max-height: 0;
+            }
+            to {
+                opacity: 1;
+                max-height: 2000px;
+            }
+        }
+        .expandable-content img {
+            max-width: 100%;
+            height: auto;
+        }
     </style>
 </head>
 <body>
@@ -151,7 +194,37 @@
                     <strong>🌐 Install as PWA (All Devices)</strong><br>
                     <strong>🤖 Android (Chrome):</strong> Tap menu (3 dots) → "Add to Home Screen"<br>
                     <strong>🍎 iPhone/iPad (Safari):</strong> Tap Share → "Add to Home Screen"<br>
-                    <strong>💻 Desktop:</strong> Click install icon in address bar
+                    <strong>💻 Desktop (Chrome):</strong> Click menu (3 dots) → "Cast, save, and share" → "Install Are You Dead? App"
+                </div>
+                
+                <!-- Detailed Desktop Instructions with Screenshot -->
+                <div class="desktop-instructions-expandable" style="margin-top: 30px;">
+                    <button class="expand-btn" id="desktop-expand-btn" onclick="toggleDesktopInstructions()">
+                        <span>📖 Show Detailed Desktop Installation Steps</span>
+                        <span class="expand-icon">▼</span>
+                    </button>
+                    <div class="expandable-content" id="desktop-instructions-content" style="display: none;">
+                        <div style="margin-top: 20px; padding: 20px; background: rgba(0, 0, 0, 0.3); border-radius: 10px;">
+                            <h4 style="color: #fff; margin-bottom: 15px;">Step-by-Step Desktop Installation:</h4>
+                            <ol style="color: #ccc; line-height: 2; padding-left: 20px;">
+                                <li>Open Chrome browser and navigate to <a href="/" style="color: #667eea;">areyoudeadapp.pages.dev</a></li>
+                                <li>Click the <strong style="color: #fff;">three dots menu</strong> (☰) in the top-right corner</li>
+                                <li>In the menu, find and click <strong style="color: #fff;">"Cast, save, and share"</strong></li>
+                                <li>In the submenu, click <strong style="color: #fff;">"Install Are You Dead? - Safety Check-in App..."</strong></li>
+                                <li>Confirm the installation in the popup dialog</li>
+                                <li>The app will be installed and appear in your applications!</li>
+                            </ol>
+                            <div style="margin-top: 20px; text-align: center;">
+                                <img src="/chrome-install-screenshot.png" alt="Chrome installation menu screenshot" 
+                                     style="max-width: 100%; border-radius: 10px; border: 2px solid rgba(102, 126, 234, 0.3); 
+                                            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);"
+                                     onerror="this.style.display='none';">
+                                <p style="color: #999; font-size: 0.85em; margin-top: 10px; font-style: italic;">
+                                    Screenshot showing Chrome menu with "Install Are You Dead? App" option
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             
@@ -200,6 +273,20 @@
         const installBtn = document.getElementById('install-btn');
         if (window.matchMedia('(display-mode: standalone)').matches) {
             installBtn.textContent = '✓ Already Installed - Open App';
+        }
+        
+        // Toggle desktop instructions
+        function toggleDesktopInstructions() {
+            const content = document.getElementById('desktop-instructions-content');
+            const btn = document.getElementById('desktop-expand-btn');
+            
+            if (content.style.display === 'none') {
+                content.style.display = 'block';
+                btn.classList.add('expanded');
+            } else {
+                content.style.display = 'none';
+                btn.classList.remove('expanded');
+            }
         }
         
         // Register Service Worker for PWA functionality
