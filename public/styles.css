@@ -1112,3 +1112,118 @@ footer a:hover {
     }
 }
 
+/* Check-in success animation */
+.checkin-success-animation {
+    animation: checkinPulse 0.6s ease-out;
+    background: #27ae60 !important;
+    box-shadow: 0 0 30px rgba(39, 174, 96, 0.6) !important;
+}
+
+@keyframes checkinPulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 5px 15px rgba(255, 68, 68, 0.4);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 40px rgba(39, 174, 96, 0.8);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 30px rgba(39, 174, 96, 0.6);
+    }
+}
+
+/* Check-in tip banner */
+.checkin-tip {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%);
+    border: 2px solid rgba(102, 126, 234, 0.3);
+    border-radius: 12px;
+    padding: 0;
+    margin: 20px 0;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease-out;
+    overflow: hidden;
+}
+
+.checkin-tip.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.checkin-tip-content {
+    padding: 16px 20px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.checkin-tip-content p {
+    margin: 0;
+    color: var(--text-color);
+    font-size: 0.95em;
+    line-height: 1.5;
+    flex: 1;
+}
+
+.checkin-tip-close {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    background: none;
+    border: none;
+    color: var(--text-light);
+    font-size: 24px;
+    cursor: pointer;
+    line-height: 1;
+    padding: 4px;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s;
+}
+
+.checkin-tip-close:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
+}
+
+/* Improved check-in success toast */
+.checkin-success-toast {
+    background: linear-gradient(135deg, rgba(39, 174, 96, 0.95) 0%, rgba(46, 213, 115, 0.95) 100%);
+    border: 2px solid rgba(39, 174, 96, 0.5);
+}
+
+.checkin-success-toast .toast-icon {
+    font-size: 28px;
+    animation: checkinToastIcon 0.5s ease-out;
+}
+
+@keyframes checkinToastIcon {
+    0% {
+        transform: scale(0) rotate(-180deg);
+    }
+    60% {
+        transform: scale(1.2) rotate(10deg);
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+@media (max-width: 768px) {
+    .checkin-tip-content {
+        padding: 14px 18px 14px 14px;
+        padding-right: 40px;
+    }
+    
+    .checkin-tip-content p {
+        font-size: 0.9em;
+    }
+}
+

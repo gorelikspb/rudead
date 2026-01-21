@@ -23,6 +23,9 @@ const translations = {
         'contact-saved': 'Contact saved!',
         'checkin-success': 'Check-in successful!',
         'checkin-error': 'Error saving check-in',
+        'checkin-toast-title': 'Check-in successful!',
+        'checkin-toast-message': 'Next check-in due in 2 days',
+        'checkin-tip-no-contact': '💡 Don\'t forget to add an emergency contact below!',
         'contact-error': 'Error saving contact',
         'user-email-title': 'Your Email (for sync across devices)',
         'user-email-description': 'Save your email to check in from any device. Your check-in status will be synced.',
@@ -97,6 +100,9 @@ const translations = {
         'contact-saved': 'Контакт сохранен!',
         'checkin-success': 'Проверка успешна!',
         'checkin-error': 'Ошибка сохранения проверки',
+        'checkin-toast-title': 'Проверка успешна!',
+        'checkin-toast-message': 'Следующая проверка через 2 дня',
+        'checkin-tip-no-contact': '💡 Не забудьте добавить контакт для экстренных случаев ниже!',
         'contact-error': 'Ошибка сохранения контакта',
         'user-email-title': 'Твой Email (для синхронизации между устройствами)',
         'user-email-description': 'Сохрани свой email, чтобы отмечаться с любого устройства. Статус проверки будет синхронизирован.',
@@ -171,6 +177,9 @@ const translations = {
         'contact-saved': '¡Contacto guardado!',
         'checkin-success': '¡Registro exitoso!',
         'checkin-error': 'Error al guardar el registro',
+        'checkin-toast-title': '¡Registro exitoso!',
+        'checkin-toast-message': 'Próximo registro en 2 días',
+        'checkin-tip-no-contact': '💡 ¡No olvides agregar un contacto de emergencia abajo!',
         'contact-error': 'Error al guardar el contacto',
         'user-email-title': 'Tu Email (para sincronizar entre dispositivos)',
         'user-email-description': 'Guarda tu email para registrarte desde cualquier dispositivo. Tu estado de registro se sincronizará.',
@@ -245,6 +254,9 @@ const translations = {
         'contact-saved': 'Kontakt gespeichert!',
         'checkin-success': 'Einchecken erfolgreich!',
         'checkin-error': 'Fehler beim Speichern des Eincheckens',
+        'checkin-toast-title': 'Einchecken erfolgreich!',
+        'checkin-toast-message': 'Nächstes Einchecken in 2 Tagen',
+        'checkin-tip-no-contact': '💡 Vergiss nicht, unten einen Notfallkontakt hinzuzufügen!',
         'contact-error': 'Fehler beim Speichern des Kontakts',
         'user-email-title': 'Deine E-Mail (für Synchronisation zwischen Geräten)',
         'user-email-description': 'Speichere deine E-Mail, um dich von jedem Gerät aus einzutragen. Dein Check-in-Status wird synchronisiert.',
@@ -319,6 +331,9 @@ const translations = {
         'contact-saved': 'Contact enregistré!',
         'checkin-success': 'Enregistrement réussi!',
         'checkin-error': 'Erreur lors de l\'enregistrement',
+        'checkin-toast-title': 'Enregistrement réussi!',
+        'checkin-toast-message': 'Prochain enregistrement dans 2 jours',
+        'checkin-tip-no-contact': '💡 N\'oublie pas d\'ajouter un contact d\'urgence ci-dessous!',
         'contact-error': 'Erreur lors de l\'enregistrement du contact',
         'user-email-title': 'Ton Email (pour la synchronisation entre appareils)',
         'user-email-description': 'Enregistre ton email pour t\'enregistrer depuis n\'importe quel appareil. Ton statut d\'enregistrement sera synchronisé.',
@@ -393,6 +408,9 @@ const translations = {
         'contact-saved': '联系人已保存！',
         'checkin-success': '签到成功！',
         'checkin-error': '保存签到失败',
+        'checkin-toast-title': '签到成功！',
+        'checkin-toast-message': '下次签到将在2天后',
+        'checkin-tip-no-contact': '💡 别忘了在下面添加紧急联系人！',
         'contact-error': '保存联系人失败',
         'user-email-title': '你的邮箱（用于跨设备同步）',
         'user-email-description': '保存你的邮箱，以便从任何设备签到。你的签到状态将被同步。',
@@ -833,19 +851,137 @@ function checkIn() {
     localStorage.setItem('lastCheckIn', now.toString());
     updateCheckInStatus();
     
-    // Show success message
+    // Enhanced visual feedback
     const btn = document.getElementById('checkin-btn');
     const originalText = btn.innerHTML;
-    btn.innerHTML = translations[currentLang]['checkin-success'];
+    const originalClass = btn.className;
+    
+    // Add success animation class
+    btn.classList.add('checkin-success-animation');
+    btn.innerHTML = '✅ ' + translations[currentLang]['checkin-success'];
     btn.disabled = true;
     
+    // Show toast notification
+    showCheckInSuccessToast();
+    
+    // Show tip if no emergency contact is set
     setTimeout(() => {
+        const contactEmail = localStorage.getItem('contactEmail');
+        if (!contactEmail) {
+            showCheckInTip();
+        }
+    }, 3000);
+    
+    setTimeout(() => {
+        btn.classList.remove('checkin-success-animation');
         btn.innerHTML = originalText;
+        btn.className = originalClass;
         btn.disabled = false;
-    }, 2000);
+    }, 2500);
     
     // Schedule next notification
     scheduleNotification();
+}
+
+// Show check-in success toast
+function showCheckInSuccessToast() {
+    // Use existing toast element or create if it doesn't exist
+    let toast = document.getElementById('checkin-success-toast');
+    const toastTitle = document.getElementById('checkin-toast-title');
+    const toastMessage = document.getElementById('checkin-toast-message');
+    
+    if (!toast || !toastTitle || !toastMessage) return;
+    
+    // Update text with current language
+    const t = translations[currentLang] || translations.en;
+    toastTitle.textContent = t['checkin-toast-title'] || 'Check-in successful!';
+    
+    // Calculate next check-in time
+    const lastCheckIn = localStorage.getItem('lastCheckIn');
+    if (lastCheckIn) {
+        const lastCheckInTime = parseInt(lastCheckIn);
+        const nextCheckIn = new Date(lastCheckInTime + (2 * 24 * 60 * 60 * 1000));
+        const localeMap = {
+            'en': 'en-US',
+            'ru': 'ru-RU',
+            'es': 'es-ES',
+            'de': 'de-DE',
+            'fr': 'fr-FR',
+            'zh': 'zh-CN'
+        };
+        const locale = localeMap[currentLang] || 'en-US';
+        const nextDateStr = nextCheckIn.toLocaleDateString(locale, { 
+            month: 'short', 
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+        toastMessage.textContent = (t['checkin-toast-message'] || 'Next check-in due in 2 days') + ' (' + nextDateStr + ')';
+    } else {
+        toastMessage.textContent = t['checkin-toast-message'] || 'Next check-in due in 2 days';
+    }
+    
+    // Show toast
+    toast.classList.add('show');
+    
+    // Hide toast after 4 seconds
+    setTimeout(() => {
+        toast.classList.remove('show');
+    }, 4000);
+}
+
+// Show check-in tip if no emergency contact
+function showCheckInTip() {
+    const settingsSection = document.querySelector('.settings-section');
+    if (!settingsSection) return;
+    
+    // Check if tip already shown
+    if (localStorage.getItem('checkinTipShown')) return;
+    
+    // Check if tip already exists
+    if (document.getElementById('checkin-tip')) return;
+    
+    // Create tip element
+    const tip = document.createElement('div');
+    tip.className = 'checkin-tip';
+    tip.id = 'checkin-tip';
+    tip.innerHTML = `
+        <div class="checkin-tip-content">
+            <span class="checkin-tip-close" id="checkin-tip-close">&times;</span>
+            <p>${translations[currentLang]?.['checkin-tip-no-contact'] || '💡 Don\'t forget to add an emergency contact below!'}</p>
+        </div>
+    `;
+    
+    // Insert before settings section
+    settingsSection.parentNode.insertBefore(tip, settingsSection);
+    
+    // Animate in
+    setTimeout(() => {
+        tip.classList.add('show');
+    }, 100);
+    
+    // Close button
+    const closeBtn = document.getElementById('checkin-tip-close');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            tip.classList.remove('show');
+            setTimeout(() => tip.remove(), 300);
+            localStorage.setItem('checkinTipShown', 'true');
+        });
+    }
+    
+    // Auto-hide after 8 seconds
+    setTimeout(() => {
+        if (tip.parentNode) {
+            tip.classList.remove('show');
+            setTimeout(() => {
+                if (tip.parentNode) {
+                    tip.remove();
+                    localStorage.setItem('checkinTipShown', 'true');
+                }
+            }, 300);
+        }
+    }, 8000);
 }
 
 // Update check-in status display
