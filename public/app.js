@@ -571,7 +571,6 @@ function init() {
     // Setup hint tooltip and email popup
     setupHintTooltip();
     setupEmailPopup();
-    setupScrollAnalytics();
     setupEmailPopupBeforeUnload();
 }
 
@@ -1943,97 +1942,35 @@ function hideEmailPopup() {
     }
 }
 
-// Scroll Analytics
-let scrollAnalytics = {
-    maxScroll: 0,
-    scrollEvents: [],
-    seoArticleReached: false,
-    startTime: Date.now()
-};
+// Simple SEO article reach tracking (optional - Clarity already tracks scroll depth)
+// Only track if you need this specific metric in your Cloudflare Worker
+let seoArticleReached = false;
 
-function setupScrollAnalytics() {
-    let scrollTimeout = null;
-    let lastScrollTime = Date.now();
+function trackSEOArticleReach() {
+    if (seoArticleReached) return;
     
-    window.addEventListener('scroll', () => {
-        const scrollPercent = Math.round((window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100);
+    const seoArticle = document.querySelector('.seo-article');
+    if (seoArticle) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !seoArticleReached) {
+                    seoArticleReached = true;
+                    // Optional: send to your worker if needed
+                    // logEmailToAdmin({ type: 'seo_article_reached', timestamp: new Date().toISOString() });
+                    console.log('SEO article reached by user');
+                }
+            });
+        }, { threshold: 0.1 });
         
-        // Track max scroll
-        if (scrollPercent > scrollAnalytics.maxScroll) {
-            scrollAnalytics.maxScroll = scrollPercent;
-        }
-        
-        // Track SEO article reach
-        const seoArticle = document.querySelector('.seo-article');
-        if (seoArticle && !scrollAnalytics.seoArticleReached) {
-            const rect = seoArticle.getBoundingClientRect();
-            if (rect.top < window.innerHeight) {
-                scrollAnalytics.seoArticleReached = true;
-                logScrollEvent('seo_article_reached', scrollPercent);
-            }
-        }
-        
-        // Debounce scroll events (log every 2 seconds max)
-        clearTimeout(scrollTimeout);
-        scrollTimeout = setTimeout(() => {
-            const timeSinceLastScroll = Date.now() - lastScrollTime;
-            if (timeSinceLastScroll >= 2000) {
-                logScrollEvent('scroll', scrollPercent);
-                lastScrollTime = Date.now();
-            }
-        }, 500);
-    });
-    
-    // Log scroll analytics on page unload
-    window.addEventListener('beforeunload', () => {
-        sendScrollAnalytics();
-    });
-    
-    // Also log periodically (every 30 seconds)
-    setInterval(() => {
-        if (scrollAnalytics.scrollEvents.length > 0) {
-            sendScrollAnalytics();
-        }
-    }, 30000);
-}
-
-function logScrollEvent(type, scrollPercent) {
-    scrollAnalytics.scrollEvents.push({
-        type: type,
-        scrollPercent: scrollPercent,
-        timestamp: Date.now()
-    });
-    
-    // Keep only last 50 events
-    if (scrollAnalytics.scrollEvents.length > 50) {
-        scrollAnalytics.scrollEvents.shift();
+        observer.observe(seoArticle);
     }
 }
 
-async function sendScrollAnalytics() {
-    if (scrollAnalytics.scrollEvents.length === 0) return;
-    
-    try {
-        const analyticsData = {
-            type: 'scroll_analytics',
-            maxScroll: scrollAnalytics.maxScroll,
-            seoArticleReached: scrollAnalytics.seoArticleReached,
-            timeOnPage: Date.now() - scrollAnalytics.startTime,
-            scrollEvents: scrollAnalytics.scrollEvents.slice(-10), // Send last 10 events
-            timestamp: new Date().toISOString()
-        };
-        
-        await fetch('https://rudead.gorelikgo.workers.dev/', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(analyticsData)
-        });
-        
-        // Clear sent events
-        scrollAnalytics.scrollEvents = [];
-    } catch (error) {
-        console.error('Failed to send scroll analytics:', error);
-    }
+// Initialize SEO article tracking
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', trackSEOArticleReach);
+} else {
+    trackSEOArticleReach();
 }
 
 // Initialize on page load
