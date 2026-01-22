@@ -35,7 +35,7 @@ const translations = {
         'user-email-error': 'Please enter a valid email address',
         'user-email-already-saved': 'This email is already saved!',
         'toast-title': 'Email Saved!',
-        'toast-message': 'We\'ve saved your email and will notify you when cross-device sync is available (coming very soon!)',
+        'toast-message': 'Your email is saved! Your check-in status will sync across all your devices.',
         'contact-title': 'Contact Developer',
         'contact-description': 'Have a question or feedback? Get in touch:',
         'contact-email-label-input': 'Your Email',
@@ -113,7 +113,7 @@ const translations = {
         'user-email-error': 'Введи корректный email адрес',
         'user-email-already-saved': 'Этот email уже сохранен!',
         'toast-title': 'Email сохранен!',
-        'toast-message': 'Мы сохранили твой email и уведомим, когда заработает синхронизация между устройствами (очень скоро!)',
+        'toast-message': 'Твой email сохранен! Статус проверки будет синхронизироваться между всеми твоими устройствами.',
         'contact-title': 'Связаться с разработчиком',
         'contact-description': 'Есть вопрос или отзыв? Напиши:',
         'contact-email-label-input': 'Твой Email',
@@ -191,7 +191,7 @@ const translations = {
         'user-email-error': 'Por favor ingresa una dirección de email válida',
         'user-email-already-saved': '¡Este email ya está guardado!',
         'toast-title': '¡Email Guardado!',
-        'toast-message': 'Hemos guardado tu email y te notificaremos cuando la sincronización entre dispositivos esté disponible (¡muy pronto!)',
+        'toast-message': '¡Tu email está guardado! Tu estado de registro se sincronizará en todos tus dispositivos.',
         'contact-title': 'Contactar al Desarrollador',
         'contact-description': '¿Tienes una pregunta o comentario? Ponte en contacto:',
         'contact-email-label-input': 'Tu Email',
@@ -269,7 +269,7 @@ const translations = {
         'user-email-error': 'Bitte gib eine gültige E-Mail-Adresse ein',
         'user-email-already-saved': 'Diese E-Mail ist bereits gespeichert!',
         'toast-title': 'E-Mail gespeichert!',
-        'toast-message': 'Wir haben deine E-Mail gespeichert und benachrichtigen dich, wenn die Gerätesynchronisation verfügbar ist (sehr bald!)',
+        'toast-message': 'Deine E-Mail ist gespeichert! Dein Check-in-Status wird auf allen deinen Geräten synchronisiert.',
         'contact-title': 'Entwickler kontaktieren',
         'contact-description': 'Hast du eine Frage oder Feedback? Kontaktiere uns:',
         'contact-email-label-input': 'Deine E-Mail',
@@ -347,7 +347,7 @@ const translations = {
         'user-email-error': 'Veuillez entrer une adresse email valide',
         'user-email-already-saved': 'Cet email est déjà enregistré!',
         'toast-title': 'Email Enregistré!',
-        'toast-message': 'Nous avons enregistré votre email et vous avertirons lorsque la synchronisation multi-appareils sera disponible (très bientôt!)',
+        'toast-message': 'Votre email est enregistré! Votre statut d\'enregistrement sera synchronisé sur tous vos appareils.',
         'contact-title': 'Contacter le Développeur',
         'contact-description': 'Une question ou un commentaire? Contactez-nous:',
         'contact-email-label-input': 'Ton Email',
@@ -425,7 +425,7 @@ const translations = {
         'user-email-error': '请输入有效的邮箱地址',
         'user-email-already-saved': '此邮箱已保存！',
         'toast-title': '电子邮件已保存！',
-        'toast-message': '我们已保存您的电子邮件，并在跨设备同步可用时通知您（很快！）',
+        'toast-message': '您的邮箱已保存！您的签到状态将在所有设备上同步。',
         'contact-title': '联系开发者',
         'contact-description': '有问题或反馈？联系我们：',
         'contact-email-label-input': '你的邮箱',
@@ -586,6 +586,8 @@ function init() {
         if (userEmailInput) {
             userEmailInput.value = savedUserEmail;
         }
+        // Try to sync check-in status from server
+        syncCheckInFromServer(savedUserEmail);
     }
     
     updateCheckInStatus();
@@ -855,6 +857,13 @@ function saveContact() {
 function checkIn() {
     const now = new Date().getTime();
     localStorage.setItem('lastCheckIn', now.toString());
+    
+    // Sync to server if user email is saved
+    const userEmail = localStorage.getItem('userEmail');
+    if (userEmail) {
+        syncCheckInToServer(now, userEmail);
+    }
+    
     updateCheckInStatus();
     
     // Enhanced visual feedback
@@ -1361,6 +1370,65 @@ async function logEmailToAdmin(emailData) {
         }
     } catch (error) {
         console.error('Failed to log email to admin:', error);
+        // Don't show error to user, just log it
+    }
+}
+
+// Sync check-in status to server
+async function syncCheckInToServer(lastCheckInTime, userEmail) {
+    try {
+        const workerUrl = 'https://rudead.gorelikgo.workers.dev/';
+        const response = await fetch(workerUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                type: 'sync_save',
+                email: userEmail,
+                lastCheckIn: lastCheckInTime.toString(),
+                timestamp: new Date().toISOString()
+            })
+        });
+        
+        const result = await response.json();
+        if (response.ok) {
+            console.log('Check-in synced to server:', result);
+        } else {
+            console.error('Failed to sync check-in:', result);
+        }
+    } catch (error) {
+        console.error('Error syncing check-in to server:', error);
+        // Don't show error to user, just log it
+    }
+}
+
+// Sync check-in status from server
+async function syncCheckInFromServer(userEmail) {
+    try {
+        const workerUrl = 'https://rudead.gorelikgo.workers.dev/';
+        const response = await fetch(workerUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                type: 'sync_get',
+                email: userEmail
+            })
+        });
+        
+        const result = await response.json();
+        if (response.ok && result.lastCheckIn) {
+            const serverCheckIn = parseInt(result.lastCheckIn);
+            const localCheckIn = localStorage.getItem('lastCheckIn');
+            const localCheckInTime = localCheckIn ? parseInt(localCheckIn) : 0;
+            
+            // Use the most recent check-in (server or local)
+            if (serverCheckIn > localCheckInTime) {
+                localStorage.setItem('lastCheckIn', serverCheckIn.toString());
+                console.log('Check-in synced from server:', new Date(serverCheckIn));
+                updateCheckInStatus();
+            }
+        }
+    } catch (error) {
+        console.error('Error syncing check-in from server:', error);
         // Don't show error to user, just log it
     }
 }

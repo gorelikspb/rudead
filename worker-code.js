@@ -343,6 +343,123 @@ export default {
           }
         }
         
+        // Sync check-in status across devices
+        if (data.type === 'sync_save') {
+          // Save lastCheckIn for user email using Cloudflare KV
+          const syncKey = `sync_${data.email.toLowerCase()}`;
+          const syncData = {
+            email: data.email,
+            lastCheckIn: data.lastCheckIn,
+            timestamp: data.timestamp || new Date().toISOString()
+          };
+          
+          try {
+            // Use KV if available (binding name: SYNC_KV)
+            // To enable: In Cloudflare Dashboard → Workers & Pages → KV → Create namespace → Bind to worker
+            if (env.SYNC_KV) {
+              await env.SYNC_KV.put(syncKey, JSON.stringify(syncData));
+              return new Response(JSON.stringify({ 
+                success: true, 
+                synced: true,
+                stored: true
+              }), {
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Access-Control-Allow-Origin': '*'
+                }
+              });
+            } else {
+              // KV not configured - just return success (data won't persist)
+              console.log('KV not configured, sync data not persisted:', syncData);
+              return new Response(JSON.stringify({ 
+                success: true, 
+                synced: true,
+                stored: false,
+                note: 'KV not configured - data not persisted. Add SYNC_KV binding in Cloudflare Dashboard.'
+              }), {
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Access-Control-Allow-Origin': '*'
+                }
+              });
+            }
+          } catch (syncError) {
+            console.error('Error syncing check-in:', syncError);
+            return new Response(JSON.stringify({ 
+              success: false, 
+              error: 'Failed to sync check-in',
+              details: syncError.message 
+            }), {
+              status: 500,
+              headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+              }
+            });
+          }
+        }
+        
+        // Get synced check-in status
+        if (data.type === 'sync_get') {
+          // Get lastCheckIn for user email from Cloudflare KV
+          const syncKey = `sync_${data.email.toLowerCase()}`;
+          
+          try {
+            if (env.SYNC_KV) {
+              const syncDataStr = await env.SYNC_KV.get(syncKey);
+              if (syncDataStr) {
+                const syncData = JSON.parse(syncDataStr);
+                return new Response(JSON.stringify({ 
+                  success: true, 
+                  lastCheckIn: syncData.lastCheckIn,
+                  timestamp: syncData.timestamp
+                }), {
+                  headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                  }
+                });
+              } else {
+                // No sync data found
+                return new Response(JSON.stringify({ 
+                  success: true, 
+                  lastCheckIn: null
+                }), {
+                  headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                  }
+                });
+              }
+            } else {
+              // KV not configured
+              return new Response(JSON.stringify({ 
+                success: true, 
+                lastCheckIn: null,
+                note: 'KV not configured'
+              }), {
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Access-Control-Allow-Origin': '*'
+                }
+              });
+            }
+          } catch (syncError) {
+            console.error('Error getting sync data:', syncError);
+            return new Response(JSON.stringify({ 
+              success: false, 
+              error: 'Failed to get sync data',
+              details: syncError.message 
+            }), {
+              status: 500,
+              headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+              }
+            });
+          }
+        }
+        
         // Log email addresses to admin
         if (data.type === 'log_email' || data.type === 'version_check') {
           const emailTypeLabels = {
