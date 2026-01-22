@@ -33,6 +33,7 @@ const translations = {
         'save-user-email-text': 'Save Email',
         'user-email-saved': 'Email saved! You can now check in from any device.',
         'user-email-error': 'Please enter a valid email address',
+        'user-email-already-saved': 'This email is already saved!',
         'toast-title': 'Email Saved!',
         'toast-message': 'We\'ve saved your email and will notify you when cross-device sync is available (coming very soon!)',
         'contact-title': 'Contact Developer',
@@ -110,6 +111,7 @@ const translations = {
         'save-user-email-text': 'Сохранить Email',
         'user-email-saved': 'Email сохранен! Теперь ты можешь отмечаться с любого устройства.',
         'user-email-error': 'Введи корректный email адрес',
+        'user-email-already-saved': 'Этот email уже сохранен!',
         'toast-title': 'Email сохранен!',
         'toast-message': 'Мы сохранили твой email и уведомим, когда заработает синхронизация между устройствами (очень скоро!)',
         'contact-title': 'Связаться с разработчиком',
@@ -187,6 +189,7 @@ const translations = {
         'save-user-email-text': 'Guardar Email',
         'user-email-saved': '¡Email guardado! Ahora puedes registrarte desde cualquier dispositivo.',
         'user-email-error': 'Por favor ingresa una dirección de email válida',
+        'user-email-already-saved': '¡Este email ya está guardado!',
         'toast-title': '¡Email Guardado!',
         'toast-message': 'Hemos guardado tu email y te notificaremos cuando la sincronización entre dispositivos esté disponible (¡muy pronto!)',
         'contact-title': 'Contactar al Desarrollador',
@@ -264,6 +267,7 @@ const translations = {
         'save-user-email-text': 'E-Mail speichern',
         'user-email-saved': 'E-Mail gespeichert! Du kannst dich jetzt von jedem Gerät aus eintragen.',
         'user-email-error': 'Bitte gib eine gültige E-Mail-Adresse ein',
+        'user-email-already-saved': 'Diese E-Mail ist bereits gespeichert!',
         'toast-title': 'E-Mail gespeichert!',
         'toast-message': 'Wir haben deine E-Mail gespeichert und benachrichtigen dich, wenn die Gerätesynchronisation verfügbar ist (sehr bald!)',
         'contact-title': 'Entwickler kontaktieren',
@@ -341,6 +345,7 @@ const translations = {
         'save-user-email-text': 'Enregistrer l\'Email',
         'user-email-saved': 'Email enregistré! Tu peux maintenant t\'enregistrer depuis n\'importe quel appareil.',
         'user-email-error': 'Veuillez entrer une adresse email valide',
+        'user-email-already-saved': 'Cet email est déjà enregistré!',
         'toast-title': 'Email Enregistré!',
         'toast-message': 'Nous avons enregistré votre email et vous avertirons lorsque la synchronisation multi-appareils sera disponible (très bientôt!)',
         'contact-title': 'Contacter le Développeur',
@@ -418,6 +423,7 @@ const translations = {
         'save-user-email-text': '保存邮箱',
         'user-email-saved': '邮箱已保存！你现在可以从任何设备签到了。',
         'user-email-error': '请输入有效的邮箱地址',
+        'user-email-already-saved': '此邮箱已保存！',
         'toast-title': '电子邮件已保存！',
         'toast-message': '我们已保存您的电子邮件，并在跨设备同步可用时通知您（很快！）',
         'contact-title': '联系开发者',
@@ -1101,27 +1107,34 @@ function saveUserEmail() {
         const existingEmail = localStorage.getItem('userEmail');
         const isSameEmail = existingEmail && existingEmail.toLowerCase() === userEmail;
         
+        // If same email, show message that it's already saved
+        if (isSameEmail) {
+            const msg = translations[currentLang]?.['user-email-already-saved'] || 'This email is already saved!';
+            // Show brief toast instead of alert
+            showBriefToast(msg);
+            console.log('User email already saved:', userEmail);
+            return;
+        }
+        
         // Save to localStorage
         localStorage.setItem('userEmail', userEmail);
         
-        // Save to email history (only if new or different)
-        if (!isSameEmail) {
-            saveEmailToHistory({
-                type: 'user',
-                email: userEmail,
-                name: 'User',
-                phone: 'Not provided',
-                timestamp: new Date().toISOString()
-            });
-            
-            // Log to admin only if not already logged
-            logEmailToAdmin({
-                type: 'user',
-                email: userEmail,
-                name: 'User',
-                phone: 'Not provided'
-            });
-        }
+        // Save to email history
+        saveEmailToHistory({
+            type: 'user',
+            email: userEmail,
+            name: 'User',
+            phone: 'Not provided',
+            timestamp: new Date().toISOString()
+        });
+        
+        // Log to admin only if not already logged
+        logEmailToAdmin({
+            type: 'user',
+            email: userEmail,
+            name: 'User',
+            phone: 'Not provided'
+        });
         
         // Show toast notification instead of alert
         showEmailSyncToast();
@@ -1188,6 +1201,42 @@ function showEmailSyncToast() {
     setTimeout(() => {
         toast.classList.remove('show');
     }, 5000);
+}
+
+// Show brief toast notification (for simple messages)
+function showBriefToast(message) {
+    // Use check-in success toast or create a simple one
+    let toast = document.getElementById('checkin-success-toast');
+    const toastTitle = document.getElementById('checkin-toast-title');
+    const toastMessage = document.getElementById('checkin-toast-message');
+    
+    if (!toast || !toastTitle || !toastMessage) {
+        // Fallback: use email sync toast
+        toast = document.getElementById('email-sync-toast');
+        const fallbackTitle = document.getElementById('toast-title');
+        const fallbackMessage = document.getElementById('toast-message');
+        if (toast && fallbackTitle && fallbackMessage) {
+            fallbackTitle.textContent = message;
+            fallbackMessage.textContent = '';
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+        return;
+    }
+    
+    // Update text
+    toastTitle.textContent = message;
+    toastMessage.textContent = '';
+    
+    // Show toast
+    toast.classList.add('show');
+    
+    // Hide toast after 3 seconds (shorter than success toast)
+    setTimeout(() => {
+        toast.classList.remove('show');
+    }, 3000);
 }
 
 // Send contact message to developer
@@ -1934,12 +1983,22 @@ function setupEmailPopup() {
                 const existingEmail = localStorage.getItem('userEmail');
                 const isSameAsExisting = existingEmail && existingEmail.toLowerCase() === email;
                 
+                // If email already exists, show message and close popup
+                if (isSameAsExisting) {
+                    const msg = translations[currentLang]?.['user-email-already-saved'] || 'This email is already saved!';
+                    hideEmailPopup();
+                    showBriefToast(msg);
+                    // Don't show again
+                    localStorage.setItem('emailPopupDismissed', Date.now().toString());
+                    return;
+                }
+                
                 // Save email
                 localStorage.setItem('userEmail', email);
                 
                 // Only log if this is a new email (not already saved in "Your Email" section)
                 // If it's the same email, it was already logged as 'user' type
-                if (!isSameAsExisting || !isEmailLogged(email, 'user')) {
+                if (!isEmailLogged(email, 'user')) {
                     // Log to admin
                     logEmailToAdmin({
                         type: 'user_popup',
