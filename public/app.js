@@ -1089,7 +1089,7 @@ function checkEmergencyNotification(lastCheckInTime) {
 function saveUserEmail() {
     try {
         const userEmailInput = document.getElementById('user-email');
-        const userEmail = userEmailInput.value.trim();
+        const userEmail = userEmailInput.value.trim().toLowerCase();
         
         if (!userEmail || !userEmail.includes('@')) {
             alert(translations[currentLang]['user-email-error']);
@@ -1097,25 +1097,31 @@ function saveUserEmail() {
             return;
         }
         
+        // Check if this is the same email that was already saved
+        const existingEmail = localStorage.getItem('userEmail');
+        const isSameEmail = existingEmail && existingEmail.toLowerCase() === userEmail;
+        
         // Save to localStorage
         localStorage.setItem('userEmail', userEmail);
         
-        // Save to email history
-        saveEmailToHistory({
-            type: 'user',
-            email: userEmail,
-            name: 'User',
-            phone: 'Not provided',
-            timestamp: new Date().toISOString()
-        });
-        
-        // Log to admin
-        logEmailToAdmin({
-            type: 'user',
-            email: userEmail,
-            name: 'User',
-            phone: 'Not provided'
-        });
+        // Save to email history (only if new or different)
+        if (!isSameEmail) {
+            saveEmailToHistory({
+                type: 'user',
+                email: userEmail,
+                name: 'User',
+                phone: 'Not provided',
+                timestamp: new Date().toISOString()
+            });
+            
+            // Log to admin only if not already logged
+            logEmailToAdmin({
+                type: 'user',
+                email: userEmail,
+                name: 'User',
+                phone: 'Not provided'
+            });
+        }
         
         // Show toast notification instead of alert
         showEmailSyncToast();
@@ -1229,13 +1235,55 @@ function sendContactMessage() {
     }
 }
 
+// Track logged emails to prevent duplicates
+function getLoggedEmails() {
+    try {
+        return JSON.parse(localStorage.getItem('loggedEmails') || '[]');
+    } catch (error) {
+        return [];
+    }
+}
+
+function addLoggedEmail(email, emailType) {
+    try {
+        const logged = getLoggedEmails();
+        const key = `${email.toLowerCase()}_${emailType}`;
+        if (!logged.includes(key)) {
+            logged.push(key);
+            // Keep only last 100 entries to prevent localStorage bloat
+            if (logged.length > 100) {
+                logged.shift();
+            }
+            localStorage.setItem('loggedEmails', JSON.stringify(logged));
+        }
+    } catch (error) {
+        console.error('Error saving logged email:', error);
+    }
+}
+
+function isEmailLogged(email, emailType) {
+    try {
+        const logged = getLoggedEmails();
+        const key = `${email.toLowerCase()}_${emailType}`;
+        return logged.includes(key);
+    } catch (error) {
+        return false;
+    }
+}
+
 // Log email to admin for tracking
 async function logEmailToAdmin(emailData) {
     try {
+        // Check if this email+type combination was already logged
+        if (isEmailLogged(emailData.email, emailData.type)) {
+            console.log('Email already logged, skipping:', emailData.email, emailData.type);
+            return;
+        }
+        
         const workerUrl = 'https://rudead.gorelikgo.workers.dev/';
         const payload = {
             type: 'log_email',
-            email_type: emailData.type, // 'contact', 'user', 'contact_dev'
+            email_type: emailData.type, // 'contact', 'user', 'user_popup', 'contact_dev'
             email: emailData.email,
             name: emailData.name || emailData.contact_name || 'Not provided',
             phone: emailData.phone || emailData.contact_phone || 'Not provided',
@@ -1256,7 +1304,10 @@ async function logEmailToAdmin(emailData) {
         const result = await response.json();
         console.log('Email logged to admin:', emailData, 'Response:', result);
         
-        if (!response.ok) {
+        if (response.ok) {
+            // Mark as logged only if successful
+            addLoggedEmail(emailData.email, emailData.type);
+        } else {
             console.error('Failed to log email:', result);
         }
     } catch (error) {
@@ -1876,28 +1927,38 @@ function setupEmailPopup() {
     if (emailPopupSubmit) {
         emailPopupSubmit.addEventListener('click', () => {
             const emailInput = document.getElementById('email-popup-input');
-            const email = emailInput.value.trim();
+            const email = emailInput.value.trim().toLowerCase();
             
             if (email && email.includes('@')) {
+                // Check if email already exists in "Your Email" section
+                const existingEmail = localStorage.getItem('userEmail');
+                const isSameAsExisting = existingEmail && existingEmail.toLowerCase() === email;
+                
                 // Save email
                 localStorage.setItem('userEmail', email);
                 
-                // Log to admin
-                logEmailToAdmin({
-                    type: 'user_popup',
-                    email: email,
-                    name: 'User',
-                    phone: 'Not provided'
-                });
-                
-                // Save to history
-                saveEmailToHistory({
-                    type: 'user_popup',
-                    email: email,
-                    name: 'User',
-                    phone: 'Not provided',
-                    timestamp: new Date().toISOString()
-                });
+                // Only log if this is a new email (not already saved in "Your Email" section)
+                // If it's the same email, it was already logged as 'user' type
+                if (!isSameAsExisting || !isEmailLogged(email, 'user')) {
+                    // Log to admin
+                    logEmailToAdmin({
+                        type: 'user_popup',
+                        email: email,
+                        name: 'User',
+                        phone: 'Not provided'
+                    });
+                    
+                    // Save to history
+                    saveEmailToHistory({
+                        type: 'user_popup',
+                        email: email,
+                        name: 'User',
+                        phone: 'Not provided',
+                        timestamp: new Date().toISOString()
+                    });
+                } else {
+                    console.log('Email already logged as "user" type, skipping "user_popup" log');
+                }
                 
                 hideEmailPopup();
                 showEmailSyncToast();
